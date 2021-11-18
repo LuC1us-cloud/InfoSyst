@@ -1,0 +1,16 @@
+// send a post request to http://localhost:3000/addRestaurant
+POST http://localhost:3000/addRestaurant
+content-type: application/json
+
+{
+    "restaurantName": "test",
+    "restaurantAddress": "test",
+    "restaurantCoordinates": "test",
+    "restaurantRating": "1",
+    "description": "test",
+    "name": "test",
+    "surname": "test",
+    "email": "test@gmail.com",
+    "phone": "test",
+    "profilePicture": "test"
+}
