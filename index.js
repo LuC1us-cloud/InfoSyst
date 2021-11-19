@@ -1,10 +1,9 @@
 const express = require("express");
-const app = express();
-const port = 3000;
+var session = require('express-session')
 const Validation = require("./validation");
+const app = require("./app");
 
 const Datastore = require("nedb");
-// database called dbRestaurant, dbMenu, dbItem, dbMonthlyData, dbClient, dbAdmin, dbLogin, dbOrderLog, dbCommandLog, dbPaymentInfo
 const dbRestaurant = new Datastore({
   filename: "database/Restaurant.db",
   autoload: true,
@@ -46,20 +45,122 @@ const dbPaymentInfo = new Datastore({
   autoload: true,
 });
 
-var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const port = 3000;
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
+function isLoggedIn(req, res, next) {
+  if (req.session.username) {
+    return next();
+  }
+  res.redirect("/login");
+}
+// a function that checks the user's role matches at least one of the roles that are sent throught function parameters
+function isAuthorized(...roles) {
+  return (req, res, next) => {
+    if (roles.includes(req.session.role)) {
+      return next();
+    }
+    res.redirect("/login");
+  };
+}
 
-app.get("/", (req, res) => {
-  // query db for all data and respond with json
-  dbRestaurant.find({}, (err, data) => {
-    res.json(data);
+// login request
+app.post("/login", (req, res) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  dbLogin.findOne({ username: username, password: password }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (data == null) {
+        res.send("false");
+      } else {
+        // set session variable to role and username
+        req.session.role = data.role;
+        req.session.username = data.username;
+        res.send("true");
+      }
+    }
   });
 });
-
+// logout request
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.send("true");
+});
+// register post request
+app.post("/register", (req, res) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  var role = req.body.role;
+  dbLogin.findOne({ username: username }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      if (data == null) {
+        const newUser = {
+          username: username,
+          password: password,
+          role: role,
+          isBanned: false,
+        };
+        dbLogin.insert(newUser, (err, data) => {
+          if (err) {
+            console.log(err);
+          } else {
+            if (role == "client") {
+          const newClient = {
+            name: "",
+            surname: "",
+            adress: "",
+            profilePicture: "",
+            _id: data._id,
+          }
+              dbClient.insert(newClient, (err, data) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.send("true");
+                }
+              });
+            } else if (role == "restaurant") {
+          const newRestaurant = {
+            name: "",
+            surname: "",
+            adress: "",
+            profilePicture: "",
+            restaurantName: "",
+            restaurantCoordinates: "",
+            approved: false,
+            _id: data._id,
+          }
+              dbRestaurant.insert(newRestaurant, (err, data) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.send("true");
+                }
+              });
+            }
+          }
+        });
+      } else {
+        res.send("false");
+      }
+    }
+  });
+});
+// get all restaurants from dbRestaurant, where approved = true
+app.get("/restaurants", (req, res) => {
+  dbRestaurant.find({ approved: true }, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
 // check if restaurant is a valid restaurant to be added to the database, if true, then add it to the database
 app.post("/addRestaurant", (req, res) => {
   const restaurant = {
@@ -94,3 +195,8 @@ app.post("/addRestaurant", (req, res) => {
     res.status(400).send("Invalid restaurant");
   }
 });
+// get request that returns "Hello world!"
+app.get("/", (req, res) => {
+  res.send({ message: 'Hello World!' });
+}
+);
