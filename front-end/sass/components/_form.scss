@@ -1,0 +1,33 @@
+.form {
+    
+    &__input {
+
+        font-family: inherit;
+        font-size: 1.5rem;
+        border: none;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        color: $color-black;
+
+        &:focus {
+            outline: none;
+        }
+
+        &--header {
+            width: 30%;
+            background-color: $color-grey-dark;
+
+        }
+
+        &--intro {
+            width: 100%;
+            background-color: $color-white;
+            transition: all .1s;
+
+            &:focus {
+                box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+                border-bottom: 5px solid $color-dark-green;
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    background-color: $background;
+    padding: 5rem;
+}
+
+.page-wrap {
+    top: 3rem;
+    right: 3rem;
+    left: 3rem;
+    bottom: 3rem;
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    height: 150vh;
+}
+
+.heading {
+
+    &-header {
+        color: $color-black;
+        text-transform: uppercase;
+        font-size: 3rem;
+        margin-left: 1rem;
+    }
+
+    &-third {
+        color: $color-white;
+        font-size: 3rem;
+    }
+}
+
+.highlight {
+
+    &-green {
+        color: $color-dark-green;
+        font-size: 4.5rem;
+        margin-left: 2rem;
+    }
+
+    &-dark {
+        color: $color-dark-blue;
+        font-size: 4.5rem;
+    }
+}

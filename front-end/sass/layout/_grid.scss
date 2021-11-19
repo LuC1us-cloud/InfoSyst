@@ -1,0 +1,43 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 3rem;
+}
+
+.card {
+    height: 40rem;
+    background-color: red;
+    border-radius: inherit;
+    width: 80%;
+    border-radius: 1rem;
+    position: relative;
+    background-size: cover;
+
+
+    &__content {
+        position: absolute;
+        bottom: 3rem;
+        left: 1rem;
+        line-height: 3rem;
+    }
+
+    &__button {
+        position: absolute;
+        bottom: -2rem;
+        right: -2rem;
+        text-align: center;
+    }
+
+    &--1 {
+        background-image: url('/InfoSyst/img/restaurant-list.jpg');
+    }
+
+    &--2 {
+        background-image: url('/InfoSyst/img/restaurant-registration.jpg');
+    }
+
+    &--3 {
+        background-image: url('/InfoSyst/img/restaurant-map.jpg');
+    }
+
+}
