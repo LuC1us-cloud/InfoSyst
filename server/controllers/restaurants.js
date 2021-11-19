@@ -5,8 +5,9 @@ function getRestaurants(req, res) {
   db.restaurant.find({ approved: true }, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(500).send("Something went wrong!");
     } else {
-      res.json(data);
+      res.status(200).json(data);
     }
   });
 }
@@ -36,9 +37,10 @@ function editRestaurant(req, res) {
       (err, numReplaced) => {
         if (err) {
           console.log(err);
+          res.status(500).send("Something went wrong!");
         }
         console.log("Restaurant edited");
-        res.json(numReplaced);
+        res.status(200).json(numReplaced);
       }
     );
   } else {
@@ -59,9 +61,10 @@ function addMenu(req, res) {
       (err, numReplaced) => {
         if (err) {
           console.log(err);
+          res.status(500).send("Something went wrong!");
         } else {
           console.log("Menu item added");
-          res.json(numReplaced);
+          res.status(200).json(numReplaced);
         }
       }
     );
@@ -84,9 +87,10 @@ function addItem(req, res) {
       (err, numReplaced) => {
         if (err) {
           console.log(err);
+          res.status(500).send("Something went wrong!");
         } else {
           console.log("Item added");
-          res.json(numReplaced);
+          res.status(200).json(numReplaced);
         }
       }
     );
@@ -113,9 +117,10 @@ function editItem(req, res) {
       (err, numReplaced) => {
         if (err) {
           console.log(err);
+          res.status(500).send("Something went wrong!");
         } else {
           console.log("Item edited");
-          res.json(numReplaced);
+          res.status(200).json(numReplaced);
         }
       }
     );
@@ -131,9 +136,10 @@ function deleteItem(req, res) {
     (err, numReplaced) => {
       if (err) {
         console.log(err);
+        res.status(500).send("Something went wrong!");
       } else {
         console.log("Item deleted");
-        res.json(numReplaced);
+        res.status(200).json(numReplaced);
       }
     }
   );
@@ -145,9 +151,10 @@ function deleteMenu(req, res) {
     (err, numReplaced) => {
       if (err) {
         console.log(err);
+        res.status(500).send("Something went wrong!");
       } else {
         console.log("Menu deleted");
-        res.json(numReplaced);
+        res.status(200).json(numReplaced);
       }
     }
   );
@@ -158,8 +165,9 @@ function getMenu(req, res) {
     (err, data) => {
       if (err) {
         console.log(err);
+        res.status(500).send("Something went wrong!");
       } else {
-        res.json(data);
+        res.status(200).json(data);
       }
     }
   );
@@ -168,8 +176,9 @@ function getRestaurant(req, res) {
   db.restaurant.findOne({ _id: req.body.id }, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(500).send("Something went wrong!");
     } else {
-      res.json(data);
+      res.status(200).json(data);
     }
   });
 }
@@ -180,9 +189,10 @@ function toggleRestaurant(req, res) {
     (err, numReplaced) => {
       if (err) {
         console.log(err);
+        res.status(500).send("Something went wrong!");
       } else {
         console.log("Restaurant approved");
-        res.json(numReplaced);
+        res.status(200).json(numReplaced);
       }
     }
   );
@@ -200,9 +210,10 @@ function addReview(req, res) {
       (err, numReplaced) => {
         if (err) {
           console.log(err);
+          res.status(500).send("Something went wrong!");
         } else {
           console.log("Review added");
-          res.json(numReplaced);
+          res.status(200).json(numReplaced);
         }
       }
     );
@@ -215,8 +226,9 @@ function getReviews(req, res) {
   db.restaurant.findOne({ _id: req.body.id }, (err, data) => {
     if (err) {
       console.log(err);
+      res.status(500).send("Something went wrong!");
     } else {
-      res.json(data.reviews);
+      res.status(200).json(data.reviews);
     }
   });
 }
