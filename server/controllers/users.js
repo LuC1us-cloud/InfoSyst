@@ -103,8 +103,115 @@ function register(req, res) {
     }
   });
 }
+function getProfile(req, res) {
+  var username = req.session.username;
+  db.login.findOne({ username: username }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      if (data == null) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        if (data.role == "client") {
+          db.client.findOne({ _id: data._id }, (err, data) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Something went wrong!");
+            } else {
+              if (data == null) {
+                res.status(500).send("Something went wrong!");
+              } else {
+                res.status(200).send(data);
+              }
+            }
+          });
+        } else if (data.role == "restaurant") {
+          db.restaurant.findOne({ _id: data._id }, (err, data) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Something went wrong!");
+            } else {
+              if (data == null) {
+                res.status(500).send("Something went wrong!");
+              } else {
+                res.status(200).send(data);
+              }
+            }
+          });
+        }
+      }
+    }
+  });
+}
+function deleteProfile(req, res) {
+  var username = req.session.username;
+  db.login.findOne({ username: username }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      if (data == null) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        if (data.role == "client") {
+          db.client.remove({ _id: data._id }, (err, data) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Something went wrong!");
+            } else {
+              if (data == null) {
+                res.status(500).send("Something went wrong!");
+              } else {
+                db.login.remove({ _id: data._id }, (err, data) => {
+                  if (err) {
+                    console.log(err);
+                    res.status(500).send("Something went wrong!");
+                  } else {
+                    if (data == null) {
+                      res.status(500).send("Something went wrong!");
+                    } else {
+                      res.status(200).send("Profile deleted!");
+                    }
+                  }
+                });
+              }
+            }
+          });
+        } else if (data.role == "restaurant") {
+          db.restaurant.remove({ _id: data._id }, (err, data) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Something went wrong!");
+            } else {
+              if (data == null) {
+                res.status(500).send("Something went wrong!");
+              } else {
+                db.login.remove({ _id: data._id }, (err, data) => {
+                  if (err) {
+                    console.log(err);
+                    res.status(500).send("Something went wrong!");
+                  } else {
+                    if (data == null) {
+                      res.status(500).send("Something went wrong!");
+                    } else {
+                      res.status(200).send("Profile deleted!");
+                    }
+                  }
+                });
+              }
+            }
+          });
+        }
+      }
+    }
+  });
+}
+
 module.exports = {
   login: login,
   register: register,
   logout: logout,
+  getProfile,
+  deleteProfile,
 };
