@@ -55,7 +55,7 @@ app.post("/addReview", restaurant.addReview);
 app.get("/getReviews", restaurant.getReviews);
 
 // get the current order
-app.get("/getOrder", order.getOrder);
+app.get("/getActiveOrders", order.getActiveOrders);
 // gets the order log for a user or a restaurant
 app.get("/getOrders", order.getOrders);
 // generates a live order tracker and an order log in the database
