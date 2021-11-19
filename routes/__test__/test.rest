@@ -14,3 +14,18 @@ content-type: application/json
     "phone": "test",
     "profilePicture": "test"
 }
+###
+POST http://localhost:3000/register
+content-type: application/json
+
+{
+    "username": "t11es1t",
+    "password": "test",
+    "role": "client"
+}
+###
+GET http://localhost:3000/
+Content-Type: application/json
+
+{
+}
