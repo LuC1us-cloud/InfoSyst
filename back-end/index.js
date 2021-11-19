@@ -9,7 +9,7 @@ app.listen(port, () => {
 exports.app = app;
 // get request that returns "Hello world!"
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/front-end/index.html");
+  res.sendFile(__dirname + "/../front-end/html/index.html");
 });
 
 // login request
