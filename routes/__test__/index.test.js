@@ -1,6 +1,8 @@
 const request = require("supertest");
-const app = require("../../app");
+const { app } = require("../../index");
 
+// sets the requests timeouts at 10s
+jest.setTimeout(10000);
 describe("POST /register", () => {
   it("Try and register a new user", async () => {
     const res = await request(app)
@@ -8,9 +10,9 @@ describe("POST /register", () => {
       .send({
         username: randomstring(10),
         password: randomstring(10),
-        role: Math.random() > 0.5 ? "restaurant" : "user",
+        role: Math.random() > 0.5 ? "restaurant" : "client",
       })
-      .expect(200, "true");
+      .expect(200);
   });
 });
 function randomstring(length, chars) {

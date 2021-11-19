@@ -2,14 +2,14 @@ const app = require("./app");
 const port = 3000;
 const users = require("./controllers/users");
 const restaurant = require("./controllers/restaurants");
-const orders = require("../controllers/orders");
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
+exports.app = app;
 // get request that returns "Hello world!"
 app.get("/", (req, res) => {
-  res.send({ message: "Hello World!" });
+  res.sendFile(__dirname + "/front-end/index.html");
 });
 
 // login request
