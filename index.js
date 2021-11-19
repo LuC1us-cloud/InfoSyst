@@ -1,50 +1,6 @@
-const express = require("express");
-var session = require('express-session')
 const Validation = require("./validation");
 const app = require("./app");
-
-const Datastore = require("nedb");
-const dbRestaurant = new Datastore({
-  filename: "database/Restaurant.db",
-  autoload: true,
-});
-const dbMenu = new Datastore({
-  filename: "database/Menu.db",
-  autoload: true,
-});
-const dbItem = new Datastore({
-  filename: "database/Item.db",
-  autoload: true,
-});
-const dbMonthlyData = new Datastore({
-  filename: "database/MonthlyData.db",
-  autoload: true,
-});
-const dbClient = new Datastore({
-  filename: "database/Client.db",
-  autoload: true,
-});
-const dbAdmin = new Datastore({
-  filename: "database/Admin.db",
-  autoload: true,
-});
-const dbLogin = new Datastore({
-  filename: "database/Login.db",
-  autoload: true,
-});
-const dbOrderLog = new Datastore({
-  filename: "database/OrderLog.db",
-  autoload: true,
-});
-const dbCommandLog = new Datastore({
-  filename: "database/CommandLog.db",
-  autoload: true,
-});
-const dbPaymentInfo = new Datastore({
-  filename: "database/PaymentInfo.db",
-  autoload: true,
-});
-
+const db = require("./database/database");
 const port = 3000;
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
@@ -69,7 +25,8 @@ function isAuthorized(...roles) {
 app.post("/login", (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
-  dbLogin.findOne({ username: username, password: password }, (err, data) => {
+
+  db.login.findOne({ username: username, password: password }, (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -94,7 +51,7 @@ app.post("/register", (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
   var role = req.body.role;
-  dbLogin.findOne({ username: username }, (err, data) => {
+  db.login.findOne({ username: username }, (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -105,18 +62,18 @@ app.post("/register", (req, res) => {
           role: role,
           isBanned: false,
         };
-        dbLogin.insert(newUser, (err, data) => {
+        db.login.insert(newUser, (err, data) => {
           if (err) {
             console.log(err);
           } else {
             if (role == "client") {
-          const newClient = {
-            name: "",
-            surname: "",
-            adress: "",
-            profilePicture: "",
-            _id: data._id,
-          }
+              const newClient = {
+                name: "",
+                surname: "",
+                adress: "",
+                profilePicture: "",
+                _id: data._id,
+              };
               dbClient.insert(newClient, (err, data) => {
                 if (err) {
                   console.log(err);
@@ -125,17 +82,17 @@ app.post("/register", (req, res) => {
                 }
               });
             } else if (role == "restaurant") {
-          const newRestaurant = {
-            name: "",
-            surname: "",
-            adress: "",
-            profilePicture: "",
-            restaurantName: "",
-            restaurantCoordinates: "",
-            approved: false,
-            _id: data._id,
-          }
-              dbRestaurant.insert(newRestaurant, (err, data) => {
+              const newRestaurant = {
+                name: "",
+                surname: "",
+                adress: "",
+                profilePicture: "",
+                restaurantName: "",
+                restaurantCoordinates: "",
+                approved: false,
+                _id: data._id,
+              };
+              db.restaurant.insert(newRestaurant, (err, data) => {
                 if (err) {
                   console.log(err);
                 } else {
@@ -153,7 +110,7 @@ app.post("/register", (req, res) => {
 });
 // get all restaurants from dbRestaurant, where approved = true
 app.get("/restaurants", (req, res) => {
-  dbRestaurant.find({ approved: true }, (err, data) => {
+  db.restaurant.find({ approved: true }, (err, data) => {
     if (err) {
       console.log(err);
     } else {
@@ -182,7 +139,7 @@ app.post("/addRestaurant", (req, res) => {
     restaurant.paymentInfo = [];
     restaurant.monthlyData = [];
     restaurant.reviews = [];
-    dbRestaurant.insert(restaurant, (err, newDoc) => {
+    db.restaurant.insert(restaurant, (err, newDoc) => {
       if (err) {
         console.log(err);
       } else {
@@ -197,6 +154,5 @@ app.post("/addRestaurant", (req, res) => {
 });
 // get request that returns "Hello world!"
 app.get("/", (req, res) => {
-  res.send({ message: 'Hello World!' });
-}
-);
+  res.send({ message: "Hello World!" });
+});
