@@ -56,6 +56,34 @@ function getActiveOrders(req, res) {
     }
   );
 }
+function acceptOrder(req, res) {
+  const id = req.body.id;
+  db.orderLog.update(
+    { _id: id },
+    { $set: { order_status: "approved" } },
+    (err, doc) => {
+      if (err) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+}
+function rejectOrder(req, res) {
+  const id = req.body.id;
+  db.orderLog.update(
+    { _id: id },
+    { $set: { order_status: "rejected" } },
+    (err, doc) => {
+      if (err) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+}
 
 module.exports = {
   orderFood,
