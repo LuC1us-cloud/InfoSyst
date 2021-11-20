@@ -67,11 +67,12 @@ function validateReview(review) {
   // review rating should be a number between 1 and 10 float
   const schema = Joi.object({
     name: Joi.string().min(1).max(30).required(),
-    description: Joi.string().min(1).max(500).required(),
+    review: Joi.string().min(1).max(500).required(),
     rating: Joi.number().min(1).max(10).required(),
   });
   const { error, value } = schema.validate(review);
   if (error) {
+    console.log(error);
     return false;
   } else {
     return true;

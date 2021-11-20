@@ -79,22 +79,24 @@ describe("GET /profile", () => {
     const res = await request(app).get(`/profile/${username}`).expect(200);
   });
 });
-describe("POST /addMenu", () => {
+var menuId;
+describe("POST /menu", () => {
   it("Try and add a menu", async () => {
     const res = await request(app)
-      .post("/addMenu")
+      .post("/menu")
       .send({
         _id: randomRestaurantId,
         name: "new menu name",
         description: "new description",
       })
       .expect(200);
+    menuId = res.body._id;
   });
 });
-describe("POST /addItem", () => {
+describe("POST /item", () => {
   it("Try and add an item", async () => {
     const res = await request(app)
-      .post("/addItem")
+      .post("/item")
       .send({
         _id: randomRestaurantId,
         name: "new item name",
@@ -106,9 +108,73 @@ describe("POST /addItem", () => {
       .expect(200);
   });
 });
+describe("POST /editItem", () => {
+  it("Try and edit an item", async () => {
+    const res = await request(app)
+      .post("/editItem")
+      .send({
+        name: "new item name",
+        newName: "new item name",
+        description: "new description",
+        price: 0.15,
+        picture: "new picture",
+        menuId: menuId,
+      })
+      .expect(200);
+  });
+});
+describe("DELETE /item", () => {
+  it("Try and delete an item", async () => {
+    const res = await request(app)
+      .delete("/item")
+      .send({
+        _id: menuId,
+        name: "new item name",
+      })
+      .expect(200);
+  });
+});
+describe("GET /menu", () => {
+  it("Try and get a menu", async () => {
+    const res = await request(app).get(`/menu/${menuId}`).expect(200);
+  });
+});
+describe("DELETE /menu", () => {
+  it("Try and delete a menu", async () => {
+    const res = await request(app)
+      .delete(`/menu`)
+      .send({
+        _id: menuId,
+      })
+      .expect(200);
+  });
+});
+describe("POST /addReview", () => {
+  it("Try and add a review", async () => {
+    const res = await request(app)
+      .post("/addReview")
+      .send({
+        _id: randomRestaurantId,
+        name: "new name",
+        review: "The food was okay, pricing could be better",
+        rating: 7,
+      })
+      .expect(200);
+  });
+});
 describe("DELETE /profile", () => {
   it("Try and delete a profile", async () => {
     const res = await request(app).delete(`/profile`).expect(200);
+  });
+});
+describe("GET /orders", () => {
+  it("Try and get all orders", async () => {
+    const res = await request(app).get(`/orders/${randomRestaurantId}`).expect(200);
+  });
+});
+describe("GET /activeOrders", () => {
+  it("Try and get all active orders", async () => {
+    const res = await request(app).get(`/activeOrders/${randomRestaurantId}`).expect(200);
   });
 });
 describe("GET /logout", () => {

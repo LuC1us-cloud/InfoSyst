@@ -64,7 +64,20 @@ function addMenu(req, res) {
         res.status(500).send("Something went wrong!");
       } else {
         console.log("Menu item added");
-        res.status(200).json(data);
+        // add menu _id to restaurant menu array
+        db.restaurant.update(
+          { _id: req.body._id },
+          { $push: { menu: data._id } },
+          (err, numReplaced) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Something went wrong!");
+            } else {
+              console.log("Menu added to restaurant");
+              res.status(200).json(numReplaced);
+            }
+          }
+        );
       }
     });
   } else {
@@ -100,26 +113,22 @@ function addItem(req, res) {
 }
 function editItem(req, res) {
   const item = {
-    name: req.body.name,
+    name: req.body.newName,
     description: req.body.description,
     price: req.body.price,
     picture: req.body.picture,
   };
   if (Validation.validateItem(item)) {
-    db.restaurant.update(
-      {
-        _id: req.body.id,
-        "menu._id": req.body.menuId,
-        "menu.items._id": req.body.itemId,
-      },
-      { $set: { "menu.$.items.$": item } },
-      (err, numReplaced) => {
+    db.menu.update(
+      { _id: req.body.menuId, "items.name": req.body.name },
+      { $set: { "items.$": item } },
+      (err, data) => {
         if (err) {
           console.log(err);
           res.status(500).send("Something went wrong!");
         } else {
           console.log("Item edited");
-          res.status(200).json(numReplaced);
+          res.status(200).json(data);
         }
       }
     );
@@ -129,38 +138,60 @@ function editItem(req, res) {
   }
 }
 function deleteItem(req, res) {
-  db.restaurant.update(
-    { _id: req.body.id, "menu._id": req.body.menuId },
-    { $pull: { "menu.$.items": { _id: req.body.itemId } } },
-    (err, numReplaced) => {
+  db.menu.update(
+    { _id: req.body.menuId },
+    { $pull: { items: { name: req.body.name } } },
+    (err, data) => {
       if (err) {
         console.log(err);
         res.status(500).send("Something went wrong!");
       } else {
         console.log("Item deleted");
-        res.status(200).json(numReplaced);
+        res.status(200).json(data);
       }
     }
   );
 }
 function deleteMenu(req, res) {
-  db.restaurant.update(
-    { _id: req.body.id },
-    { $pull: { menu: { _id: req.body.menuId } } },
-    (err, numReplaced) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Something went wrong!");
-      } else {
-        console.log("Menu deleted");
-        res.status(200).json(numReplaced);
+  // find a menu with the bodu._id and remove it from the restaurant menu array
+  // then delete the menu from menu database
+  console.log(req.body._id);
+  db.menu.findOne({ _id: req.body._id }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      if (!data) {
+        console.log("Menu not found");
+        res.status(404).send("Menu not found");
       }
+      db.restaurant.update(
+        { _id: data.restaurantId },
+        { $pull: { menu: data._id } },
+        (err, numReplaced) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send("Something went wrong!");
+          } else {
+            console.log("Menu deleted");
+            db.menu.remove({ _id: req.body._id }, (err, numRemoved) => {
+              if (err) {
+                console.log(err);
+                res.status(500).send("Something went wrong!");
+              } else {
+                console.log("Menu removed");
+                res.status(200).json(numRemoved);
+              }
+            });
+          }
+        }
+      );
     }
-  );
+  });
 }
 function getMenu(req, res) {
-  db.restaurant.findOne(
-    { _id: req.body.id, "menu._id": req.body.menuId },
+  db.menu.findOne(
+    { _id: req.params.menuId },
     (err, data) => {
       if (err) {
         console.log(err);
@@ -217,7 +248,7 @@ function addReview(req, res) {
   };
   if (Validation.validateReview(review)) {
     db.restaurant.update(
-      { _id: req.body.id },
+      { _id: req.body._id },
       { $push: { reviews: review } },
       (err, numReplaced) => {
         if (err) {
@@ -235,7 +266,7 @@ function addReview(req, res) {
   }
 }
 function getReviews(req, res) {
-  db.restaurant.findOne({ _id: req.body.id }, (err, data) => {
+  db.restaurant.findOne({ _id: req.params.restaurantId }, (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Something went wrong!");

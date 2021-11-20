@@ -24,8 +24,8 @@ function orderFood(req, res) {
 }
 function getOrders(req, res) {
   // set id to req.body.restaurant_id, if it is null, then set it to req.body.client_id
-  const id = req.query.restaurant_id || req.query.client_id;
-  // return all orders that id matches restaurant_id or client_id
+  const id = req.params.id;
+  // return all orders that id matches restaurant_id or client_id 
   db.orderLog.find(
     { $or: [{ restaurant_id: id }, { client_id: id }] },
     (err, doc) => {
@@ -39,13 +39,13 @@ function getOrders(req, res) {
 }
 function getActiveOrders(req, res) {
   // set id to req.body.restaurant_id, if it is null, then set it to req.body.client_id
-  const id = req.query.restaurant_id || req.query.client_id;
+  const id = req.params.id;
   // return all orders that id matches restaurant_id or client_id
   // and order_status is pending or in progress
   db.orderLog.find(
     {
       $or: [{ restaurant_id: id }, { client_id: id }],
-      order_status: { $in: ["pending", "in progress"] },
+      order_status: { $in: ["pending", "approved"] },
     },
     (err, doc) => {
       if (err) {

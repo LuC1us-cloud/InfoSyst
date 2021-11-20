@@ -36,27 +36,30 @@ app.get("/profile/:username", users.getProfile);
 app.delete("/profile", users.deleteProfile);
 
 // adds a menu item to a restaurant
-app.post("/addMenu", restaurant.addMenu);
+app.post("/menu", restaurant.addMenu);
 // gets the menu for a restaurant
-app.get("/getMenu", restaurant.getMenu);
+app.get("/menu/:menuId", restaurant.getMenu);
 // deletes a menu item
-app.post("/deleteMenu", restaurant.deleteMenu);
+app.delete("/menu", restaurant.deleteMenu);
 
 // adds an item to a menu
-app.post("/addItem", restaurant.addItem);
+app.post("/item", restaurant.addItem);
 // edits an item in the menu
 app.post("/editItem", restaurant.editItem);
 // deletes an item in the menu
-app.post("/deleteItem", restaurant.deleteItem);
+app.delete("/item", restaurant.deleteItem);
 
 // adds a review to a restaurant
 app.post("/addReview", restaurant.addReview);
 // gets the reviews for a restaurant
-app.get("/getReviews", restaurant.getReviews);
+app.get("/getReviews/:restaurantId", restaurant.getReviews);
 
 // get the current order
-app.get("/getActiveOrders", order.getActiveOrders);
+app.get("/activeOrders/:id", order.getActiveOrders);
 // gets the order log for a user or a restaurant
-app.get("/getOrders", order.getOrders);
+app.get("/orders/:id", order.getOrders);
 // generates a live order tracker and an order log in the database
 app.post("/orderFood", order.orderFood);
+
+// app.post("/rejectOrder")
+// app.post("/acceptOrder")
