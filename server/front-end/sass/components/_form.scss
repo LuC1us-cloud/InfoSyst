@@ -1,5 +1,32 @@
 .form {
-    
+    padding: 1.5rem 2rem;
+    width: 30%;
+    font-size: 2rem;
+
+    &__login {
+        text-align: center;
+        padding: 2rem;
+        display: none;
+    }
+
+    &__label {
+        font-size: 2rem;
+        display: block;
+
+        &:not(:first-child) {
+            margin-top: 2rem;
+        }
+    }
+
+    &__textarea{
+        border: none;
+        border-bottom: 1px solid $color-dark-green;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
     &__input {
 
         font-family: inherit;
@@ -8,6 +35,14 @@
         padding: 1.5rem 2rem;
         border-radius: 1rem;
         color: $color-black;
+
+
+
+        &--login {
+            border-radius: 0 !important;
+            width: 50%;
+            border-bottom: 1px solid $color-dark-green;
+        }
 
         &:focus {
             outline: none;
