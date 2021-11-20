@@ -14,6 +14,7 @@ function login(req, res) {
         // set session variable to role and username
         req.session.role = data.role;
         req.session.username = data.username;
+        req.session.id = data._id;
         res.send("true");
       }
     }
@@ -77,12 +78,15 @@ function register(req, res) {
               });
             } else if (role == "restaurant") {
               const newRestaurant = {
-                name: "",
-                surname: "",
-                adress: "",
+                name: "Vardenis",
+                surname: "Pavardenis",
+                adress: "Gatviu g. 11",
                 profilePicture: "",
-                restaurantName: "",
-                restaurantCoordinates: "",
+                restaurantName: "Restoranas",
+                restaurantCoordinates: "0.00000, 0.00000",
+                website: "",
+                openingHours: "24/7",
+                image: "",
                 approved: false,
                 _id: data._id,
               };
@@ -104,7 +108,7 @@ function register(req, res) {
   });
 }
 function getProfile(req, res) {
-  var username = req.session.username;
+  var username = req.params.username;
   db.login.findOne({ username: username }, (err, data) => {
     if (err) {
       console.log(err);
@@ -146,6 +150,7 @@ function getProfile(req, res) {
 }
 function deleteProfile(req, res) {
   var username = req.session.username;
+  console.log(username);
   db.login.findOne({ username: username }, (err, data) => {
     if (err) {
       console.log(err);

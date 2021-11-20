@@ -24,16 +24,16 @@ app.post("/register", users.register);
 // gets list of restaurants
 app.get("/getRestaurants", restaurant.getRestaurants);
 // gets restaurant information
-app.get("/getRestaurant", restaurant.getRestaurant);
+app.get("/getRestaurant/:id", restaurant.getRestaurant);
 // edots a restaurant's information
 app.post("/editRestaurant", restaurant.editRestaurant);
 // toggles a restaurant from being viewed
 app.post("/toggleRestaurant", restaurant.toggleRestaurant);
 
 // gets profile information
-app.get("/getProfile", users.getProfile);
+app.get("/profile/:username", users.getProfile);
 // deletes the user profile and all related data
-app.post("/deleteProfile", users.deleteProfile);
+app.delete("/profile", users.deleteProfile);
 
 // adds a menu item to a restaurant
 app.post("/addMenu", restaurant.addMenu);

@@ -16,11 +16,13 @@ function editRestaurant(req, res) {
     restaurantName: req.body.restaurantName,
     restaurantAddress: req.body.restaurantAddress,
     restaurantCoordinates: req.body.restaurantCoordinates,
-    restaurantRating: req.body.restaurantRating,
     description: req.body.description,
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email,
+    website: req.body.website,
+    openingHours: req.body.openingHours,
+    image: req.body.image,
     phone: req.body.phone,
     profilePicture: req.body.profilePicture,
   };
@@ -32,7 +34,7 @@ function editRestaurant(req, res) {
     restaurant.monthlyData = [];
     restaurant.reviews = [];
     db.restaurant.update(
-      { _id: req.body.id },
+      { _id: req.body._id },
       restaurant,
       (err, numReplaced) => {
         if (err) {
@@ -55,19 +57,16 @@ function addMenu(req, res) {
   };
   if (Validation.validateMenu(menu)) {
     menu.items = [];
-    db.restaurant.update(
-      { _id: req.body.id },
-      { $push: { menu: menu } },
-      (err, numReplaced) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send("Something went wrong!");
-        } else {
-          console.log("Menu item added");
-          res.status(200).json(numReplaced);
-        }
+    menu.restaurantId = req.body._id;
+    db.menu.insert(menu, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Something went wrong!");
+      } else {
+        console.log("Menu item added");
+        res.status(200).json(data);
       }
-    );
+    });
   } else {
     console.log("Invalid menu item");
     res.status(400).send("Invalid menu item");
@@ -81,16 +80,16 @@ function addItem(req, res) {
     picture: req.body.picture,
   };
   if (Validation.validateItem(item)) {
-    db.restaurant.update(
-      { _id: req.body.id, "menu._id": req.body.menuId },
-      { $push: { "menu.$.items": item } },
-      (err, numReplaced) => {
+    db.menu.update(
+      { restaurantId: req.body._id },
+      { $push: { items: item } },
+      (err, data) => {
         if (err) {
           console.log(err);
           res.status(500).send("Something went wrong!");
         } else {
           console.log("Item added");
-          res.status(200).json(numReplaced);
+          res.status(200).json(data);
         }
       }
     );
@@ -173,7 +172,7 @@ function getMenu(req, res) {
   );
 }
 function getRestaurant(req, res) {
-  db.restaurant.findOne({ _id: req.body.id }, (err, data) => {
+  db.restaurant.findOne({ _id: req.params.id }, (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send("Something went wrong!");
@@ -183,19 +182,32 @@ function getRestaurant(req, res) {
   });
 }
 function toggleRestaurant(req, res) {
-  db.restaurant.update(
-    { _id: req.body.id },
-    { $set: { approved: req.body.approved } },
-    (err, numReplaced) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Something went wrong!");
-      } else {
-        console.log("Restaurant approved");
-        res.status(200).json(numReplaced);
+  db.restaurant.findOne({ _id: req.body._id }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      if (!data) {
+        console.log("Invalid restaurant");
+        res.status(400).send("Invalid restaurant");
       }
+      data.approved = !data.approved;
+      db.restaurant.update({ _id: req.body._id }, data, (err, numReplaced) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Something went wrong!");
+        } else {
+          if (data.approved) {
+            console.log("Restaurant approved");
+            res.status(200).json("Restaurant approved");
+          } else {
+            console.log("Restaurant unapproved");
+            res.status(200).json("Restaurant unapproved");
+          }
+        }
+      });
     }
-  );
+  });
 }
 function addReview(req, res) {
   const review = {

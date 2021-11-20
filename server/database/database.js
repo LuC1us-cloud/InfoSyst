@@ -31,6 +31,14 @@ const dbPaymentInfo = new Datastore({
   filename: "database/PaymentInfo.db",
   autoload: true,
 });
+const dbMenu = new Datastore({
+  filename: "database/Menus.db",
+  autoload: true,
+});
+const dbItem = new Datastore({
+  filename: "database/Items.db",
+  autoload: true,
+});
 // export all consts
 module.exports = {
   restaurant: dbRestaurant,
@@ -41,4 +49,6 @@ module.exports = {
   orderLog: dbOrderLog,
   commandlog: dbCommandLog,
   paymentInfo: dbPaymentInfo,
+  menu: dbMenu,
+  item: dbItem,
 };

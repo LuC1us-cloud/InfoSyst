@@ -24,7 +24,7 @@ content-type: application/json
     "role": "client"
 }
 ###
-GET http://localhost:3000/
+GET http://localhost:3000/getRestaurants
 Content-Type: application/json
 
 {
