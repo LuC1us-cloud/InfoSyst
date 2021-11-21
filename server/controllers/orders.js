@@ -89,4 +89,6 @@ module.exports = {
   orderFood,
   getOrders,
   getActiveOrders,
+  acceptOrder,
+  rejectOrder,
 };

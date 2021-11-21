@@ -64,3 +64,4 @@ app.post("/orderFood", order.orderFood);
 // app.post("/rejectOrder")
 // app.post("/acceptOrder")
 app.post("/acceptOrder", order.acceptOrder);
+app.post("/rejectOrder", order.rejectOrder);
