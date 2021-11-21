@@ -61,7 +61,7 @@ app.get("/orders/:id", order.getOrders);
 // generates a live order tracker and an order log in the database
 app.post("/orderFood", order.orderFood);
 
-// app.post("/rejectOrder")
 // app.post("/acceptOrder")
 app.post("/acceptOrder", order.acceptOrder);
+// app.post("/rejectOrder")
 app.post("/rejectOrder", order.rejectOrder);
