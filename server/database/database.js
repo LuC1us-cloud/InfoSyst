@@ -3,14 +3,6 @@ const dbRestaurant = new Datastore({
   filename: "database/Restaurant.db",
   autoload: true,
 });
-const dbMenu = new Datastore({
-  filename: "database/Menu.db",
-  autoload: true,
-});
-const dbItem = new Datastore({
-  filename: "database/Item.db",
-  autoload: true,
-});
 const dbMonthlyData = new Datastore({
   filename: "database/MonthlyData.db",
   autoload: true,
@@ -39,11 +31,17 @@ const dbPaymentInfo = new Datastore({
   filename: "database/PaymentInfo.db",
   autoload: true,
 });
+const dbMenu = new Datastore({
+  filename: "database/Menus.db",
+  autoload: true,
+});
+const dbItem = new Datastore({
+  filename: "database/Items.db",
+  autoload: true,
+});
 // export all consts
 module.exports = {
   restaurant: dbRestaurant,
-  menu: dbMenu,
-  item: dbItem,
   monthlyData: dbMonthlyData,
   client: dbClient,
   admin: dbAdmin,
@@ -51,4 +49,6 @@ module.exports = {
   orderLog: dbOrderLog,
   commandlog: dbCommandLog,
   paymentInfo: dbPaymentInfo,
+  menu: dbMenu,
+  item: dbItem,
 };
