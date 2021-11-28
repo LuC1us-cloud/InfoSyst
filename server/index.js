@@ -5,7 +5,7 @@ const restaurant = require("./controllers/restaurants");
 const order = require("./controllers/orders");
 
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+  console.log(`Server is running. Communicate with http://localhost:${port}`);
 });
 exports.app = app;
 // get request that returns "Hello world!"
