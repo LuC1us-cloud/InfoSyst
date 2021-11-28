@@ -85,3 +85,15 @@
     </div>
   </body>
 </html>
+
+<script>
+
+
+  $.ajax({
+    type: "get",
+    url: "http://localhost:3000/getRestaurants",
+    success: function (response) {
+      console.log(response);
+    }
+  });
+</script>

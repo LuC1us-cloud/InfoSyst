@@ -1,6 +1,9 @@
 "use strict";
 
 $( document ).ready(function() {
+
+    
+
     $('.btn--login-header').click(function () { 
         $('.popup').toggle();
         $('.form__login').append(
