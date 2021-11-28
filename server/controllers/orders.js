@@ -1,4 +1,5 @@
 const db = require("../database/database");
+const Validation = require("../controllers/validation");
 
 function orderFood(req, res) {
   const newOrder = {
@@ -7,20 +8,24 @@ function orderFood(req, res) {
     order_status: "pending",
     order_time: new Date(),
     order_delivery_time: new Date(),
-    price: req.body.price,
+    order_total_price: req.body.order_total_price,
     tip: req.body.tip,
     order_items: req.body.order_items,
     order_address: req.body.order_address,
     order_phone: req.body.order_phone,
     order_notes: req.body.order_notes,
   };
-  db.orderLog.insert(newOrder, (err, doc) => {
-    if (err) {
-      res.status(500).send("Something went wrong!");
-    } else {
-      res.status(200).send(doc);
-    }
-  });
+  if (!Validation.validateOrder(newOrder)) {
+    res.status(400).send("Invalid order");
+  } else {
+    db.orderLog.insert(newOrder, (err, doc) => {
+      if (err) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        res.status(200).send(doc);
+      }
+    });
+  }
 }
 function getOrders(req, res) {
   // set id to req.body.restaurant_id, if it is null, then set it to req.body.client_id
@@ -56,9 +61,40 @@ function getActiveOrders(req, res) {
     }
   );
 }
+function acceptOrder(req, res) {
+  const _id = req.body._id;
+  const order_delivery_time = req.body.order_delivery_time;
+  db.orderLog.update(
+    { _id: _id },
+    { $set: { order_status: "approved", order_delivery_time: order_delivery_time } },
+    (err, doc) => {
+      if (err) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+}
+function rejectOrder(req, res) {
+  const id = req.body.id;
+  db.orderLog.update(
+    { _id: id },
+    { $set: { order_status: "rejected" } },
+    (err, doc) => {
+      if (err) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+}
 
 module.exports = {
   orderFood,
   getOrders,
   getActiveOrders,
+  acceptOrder,
+  rejectOrder,
 };
