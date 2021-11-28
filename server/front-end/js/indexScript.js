@@ -46,7 +46,7 @@ $( document ).ready(function() {
 
     $('.btn--restoraunt-registration').click(function(e) {
         e.preventDefault();
-        
+
         $('.popup').toggle();
 
         $('.form__login').append(
@@ -75,7 +75,5 @@ $( document ).ready(function() {
     $('.popup__close').click(function () { 
         $('.popup').toggle();
     });
-
-
 });
 
