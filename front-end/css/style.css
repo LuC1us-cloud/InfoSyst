@@ -31,6 +31,8 @@ body {
   text-transform: uppercase;
   font-size: 3rem;
   margin-left: 1rem; }
+  .heading-header--center {
+    text-align: center; }
 
 .heading-third {
   color: #FFF;
@@ -50,6 +52,9 @@ body {
 
 .u-margin-top-small {
   margin-top: 2rem; }
+
+.u-margin-left-small {
+  margin-left: 2rem; }
 
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
@@ -80,6 +85,9 @@ body {
     top: 2rem;
     font-size: 1.2rem !important; }
 
+.btn--red {
+  background-color: rgba(255, 0, 0, 0.534); }
+
 .btn--arow {
   background-color: #0fb163;
   border-radius: 50%;
@@ -93,7 +101,7 @@ body {
 
 .error__message {
   margin-top: 1rem;
-  color: red;
+  color: rgba(255, 0, 0, 0.534);
   font-size: 1.2rem; }
 
 .form {
@@ -104,6 +112,9 @@ body {
     text-align: center;
     padding: 2rem;
     display: none; }
+  .form__profile {
+    padding: 5rem 5rem;
+    text-align: center; }
   .form__label {
     font-size: 2rem;
     display: block; }
@@ -125,6 +136,8 @@ body {
       border-radius: 0 !important;
       width: 50%;
       border-bottom: 1px solid #0fb163; }
+      .form__input--login--noBorder {
+        border: none; }
     .form__input:focus {
       outline: none; }
     .form__input--header {
@@ -237,3 +250,22 @@ body {
 
 .intro__search {
   position: relative; }
+
+.profile {
+  width: 70%;
+  background-color: #c2ead7;
+  margin: auto;
+  margin-top: 20rem;
+  border-radius: 1rem;
+  position: relative; }
+  .profile__content {
+    padding-top: 5rem; }
+  .profile__picture {
+    height: 15rem;
+    width: 15rem;
+    border-radius: 50%;
+    background-image: url("/InfoSyst/front-end/img/profile.png");
+    background-size: cover;
+    position: absolute;
+    top: 10%;
+    left: 5%; }

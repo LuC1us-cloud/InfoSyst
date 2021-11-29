@@ -105,7 +105,7 @@ function loginSubmit(e) {
           if(response === "false") {
             $('.error__message').html("Neteisingas slapyvardis arba slaptažodis");
           }else {
-              window.location.replace();
+              window.location.replace("../html/client.html");
           }
         }
       });
@@ -114,21 +114,21 @@ function loginSubmit(e) {
 function registerSubmit(e) {
     e.preventDefault();
     const userType = e.target.parentNode.className.includes("client") ? "client" : "restaurant";
-    const userName = $('#username-register').val();
-    const passwrod = $('#password-register').val();
+    const username = $('#username-register').val();
+    const password = $('#password-register').val();
     const repeatPassword = $('#password-register-repeat').val();
 
-    if(!userName || !passwrod || !repeatPassword) {
+    if(!username || !password || !repeatPassword) {
         $('.error__message').html("Visi laukai turi būti užpildyti");
         return;
     }
 
-    if(passwrod != repeatPassword) {
+    if(password != repeatPassword) {
         $('.error__message').html("Slaptažodžiai turi sutapti");
         return;
     }
 
-    if(passwrod.length < 8) {
+    if(password.length < 8) {
         $('.error__message').html("Slaptažodžiai turi būti bent 8 simbolių ilgio");
         return;
     }
@@ -141,7 +141,7 @@ function registerSubmit(e) {
             "password":password,
             "role": userType
         },
-        success: function (_, _, xhr) {
+        success: function (data, _, xhr) {
 
           if(xhr.status === 200 ) {
               if(userType === client) {

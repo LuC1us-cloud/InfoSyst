@@ -1,0 +1,24 @@
+.profile {
+
+    width: 70%;
+    background-color: $color-light-green;
+    margin: auto;
+    margin-top: 20rem;
+    border-radius: 1rem;
+    position: relative;
+
+    &__content {
+        padding-top: 5rem;
+    }
+
+    &__picture {
+        height: 15rem;
+        width: 15rem;
+        border-radius: 50%;
+        background-image: url("/InfoSyst/front-end/img/profile.png");
+        background-size: cover;
+        position: absolute;
+        top: 10%;
+        left: 5%;
+    }
+}

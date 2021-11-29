@@ -9,6 +9,11 @@
         display: none;
     }
 
+    &__profile {
+        padding: 5rem 5rem;
+        text-align: center;
+    }
+
     &__label {
         font-size: 2rem;
         display: block;
@@ -42,6 +47,10 @@
             border-radius: 0 !important;
             width: 50%;
             border-bottom: 1px solid $color-dark-green;
+
+            &--noBorder {
+                border: none;
+            }
         }
 
         &:focus {
