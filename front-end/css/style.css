@@ -37,6 +37,8 @@ body {
 .heading-third {
   color: #FFF;
   font-size: 3rem; }
+  .heading-third--black {
+    color: #000; }
 
 .highlight-green {
   color: #0fb163;
@@ -55,6 +57,9 @@ body {
 
 .u-margin-left-small {
   margin-left: 2rem; }
+
+.u-text-center {
+  text-align: center; }
 
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
@@ -185,6 +190,9 @@ body {
     overflow: hidden;
     transform: translate(-50%, -50%), scale(0.5);
     transition: all .4s .2s; }
+    .popup__content--small {
+      padding: 3rem 3rem;
+      height: 20vh; }
   .popup:target {
     opacity: 1;
     visibility: visible; }

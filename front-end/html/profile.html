@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="module" src="../js/clientScript.js"></script>
+    <script defer src="../js/profile.js"></script>
+
 
     <title>Bwold Food</title>
 </head>
@@ -16,10 +17,16 @@
   <div class="page-wrap">
 
     <div class="popup">
-      <div class="popup__content">
+      <div class="popup__content popup__content--small">
         <a href="" class="popup__close">&times;</a>
-          <form class="form__login"></form>
+        <h3 class="heading-third heading-third--black u-text-center">Ar tikrai norite Ištrinti paskyrą?</h3>
+
+        <div class="u-text-center u-margin-top-small">
+          <a href="client.html" class="btn btn--green btn--login btn--login-header confirm-delete">Ištrinti</a>
+          <a href="#" class="btn btn--red cancel">Atšaukti</a> 
         </div>
+
+      </div>
     </div>
 
     <header class="header">
@@ -30,7 +37,7 @@
 
         <div class="header__buttons">
           <a href="client.html" class="btn btn--green btn--login btn--login-header">Pagrindinis</a>
-          <a href="#" class="btn btn--green btn--register">Atsijungti</a> 
+          <a href="#" class="btn btn--green btn--register logout">Atsijungti</a> 
         </div>
       </div>
     </header>
@@ -50,8 +57,9 @@
             <input type="text" id="address-profile" name="address-profile" placeholder="Adresas" class="form__input form__input--login form__input--login--noBorder  u-margin-top-small" required>
 
             <p class="error__message"></p>
+
             <input type="submit" name="login" class="btn btn--green u-margin-top-small" value="Atanujinti" onclick="updateProfile(event)" />
-            <input type="submit" name="login" class="btn btn--red u-margin-top-small u-margin-left-small" value="Ištrinti" onclick="deleteProfile(event)" />
+            <input type="button" name="login" class="btn btn--red u-margin-top-small u-margin-left-small" value="Ištrinti" onclick="deleteProfile(event)" />
           </form>
         </div>
       </div>

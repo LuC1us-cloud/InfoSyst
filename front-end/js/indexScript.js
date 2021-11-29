@@ -143,7 +143,7 @@ function registerSubmit(e) {
         },
         success: function (data, _, xhr) {
 
-          if(xhr.status === 200 ) {
+          if(xhr.status === 200) {
               if(userType === client) {
                 $('.error__message').html("Jūs buvote sėkmingai užregistruotas, dabar galite prisijungti!");
               }else {
