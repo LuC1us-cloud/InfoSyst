@@ -27,13 +27,13 @@ body {
   height: 150vh; }
 
 .heading-header {
-  color: black;
+  color: #000;
   text-transform: uppercase;
   font-size: 3rem;
   margin-left: 1rem; }
 
 .heading-third {
-  color: #ffff;
+  color: #FFF;
   font-size: 3rem; }
 
 .highlight-green {
@@ -58,7 +58,7 @@ body {
   display: inline-block;
   border-radius: 1rem;
   transition: all .2s;
-  color: #ffff;
+  color: #FFF;
   border: none;
   cursor: pointer;
   font-size: 1.3rem;
@@ -85,11 +85,16 @@ body {
   border-radius: 50%;
   font-size: 4rem;
   padding: .5rem 1rem;
-  color: #ffff;
+  color: #FFF;
   text-decoration: none; }
 
 .btn--login {
   margin-right: 2rem; }
+
+.error__message {
+  margin-top: 1rem;
+  color: red;
+  font-size: 1.2rem; }
 
 .form {
   padding: 1.5rem 2rem;
@@ -115,7 +120,7 @@ body {
     border: none;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
-    color: black; }
+    color: #000; }
     .form__input--login {
       border-radius: 0 !important;
       width: 50%;
@@ -127,7 +132,7 @@ body {
       background-color: #e7e7e7; }
     .form__input--intro {
       width: 100%;
-      background-color: #ffff;
+      background-color: #FFF;
       transition: all .1s; }
       .form__input--intro:focus {
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -160,7 +165,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 40%;
-    background-color: #ffff;
+    background-color: #FFF;
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     display: table;
@@ -205,16 +210,16 @@ body {
     right: -2rem;
     text-align: center; }
   .card--1 {
-    background-image: url("/InfoSyst/server/front-end/img/restaurant-list.jpg"); }
+    background-image: url("/InfoSyst/front-end/img/restaurant-list.jpg"); }
   .card--2 {
-    background-image: url("/InfoSyst/server/front-end/img/restaurant-registration.jpg"); }
+    background-image: url("/InfoSyst/front-end/img/restaurant-registration.jpg"); }
   .card--3 {
-    background-image: url("/InfoSyst/server/front-end/img/restaurant-map.jpg"); }
+    background-image: url("/InfoSyst/front-end/img/restaurant-map.jpg"); }
 
 .section {
   width: 100%; }
   .section-intro {
-    background-image: linear-gradient(105deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 50%, transparent 50%), url("/InfoSyst/server/front-end/img/food-bg.jpg.jpg");
+    background-image: linear-gradient(105deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 50%, transparent 50%), url("/InfoSyst/front-end/img/food-bg.jpg.jpg");
     background-size: cover;
     height: 70vh;
     border-radius: inherit;
