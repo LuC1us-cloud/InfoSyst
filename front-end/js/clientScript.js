@@ -6,8 +6,9 @@ $( document ).ready(function() {
     // $('.logout').click(Helper.logout(session))
 
     const restaurants = getRestaurantsData();
+    console.log(restaurants);
     // REMOVE THIS ONCE BACKEDN WILL BE FIXED
-    restaurants.splice(0,1);
+    // restaurants.splice(0,1);
     renderRestaurants(restaurants)
 
     $('.open-profile').click(function() {
@@ -15,6 +16,7 @@ $( document ).ready(function() {
 
         window.location.replace(`../html/profile.html?username=${username}`);
     });
+
 
     // $('.card--standard').hover(function(e) {
     //     $('.card__content--back').toggle("slow");
@@ -59,7 +61,7 @@ const renderRestaurants = function(restaurants) {
                     </div>
 
                     <div class="card__button">
-                        <a href="" class="btn--arow btn--${_id}">&#8594;</a>
+                        <a href="restaurant.html?restaurant=${_id}" class="btn--arow restaurant-info">&#8594;</a>
                     </div>
                 </div>
             `)

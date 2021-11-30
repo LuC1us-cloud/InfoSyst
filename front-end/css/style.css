@@ -34,6 +34,10 @@ body {
   .heading-header--center {
     text-align: center; }
 
+.heading-large {
+  font-size: 5rem;
+  text-transform: uppercase; }
+
 .heading-third {
   color: #FFF;
   font-size: 3rem; }
@@ -60,6 +64,9 @@ body {
 
 .u-margin-left-small {
   margin-left: 2rem; }
+
+.u-padding-top-small {
+  padding-top: 2rem; }
 
 .u-text-center {
   text-align: center; }
@@ -343,3 +350,10 @@ body {
 .restaurants {
   width: 80%;
   margin: auto; }
+
+.restaurant {
+  background-image: linear-gradient(105deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 50%, transparent 50%), url("/InfoSyst/front-end/img/restaurant-map.jpg");
+  background-size: cover;
+  height: 70vh;
+  border-radius: inherit;
+  position: relative; }

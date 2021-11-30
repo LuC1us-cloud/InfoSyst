@@ -31,6 +31,11 @@ body {
         }
     }
 
+    &-large {
+        font-size: 5rem;
+        text-transform: uppercase;
+    }
+
     &-third {
         color: $color-white;
         font-size: 3rem;
