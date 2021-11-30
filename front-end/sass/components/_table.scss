@@ -1,0 +1,52 @@
+.table {
+    width: 85%;
+    height: 80vh;
+    margin: auto;
+    border: 1px solid $color-light-green;
+
+    &__header {
+        width: 100%;
+        height: 10%;
+        background-color: $color-dark-green;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        color: $color-white;
+        table-layout: fixed;
+        font-size: 2rem;
+    }
+
+    &__body {
+        width: 100%;
+        text-align: center;
+        table-layout: fixed;
+        border-spacing:0;
+        border-collapse: collapse;
+
+        & td {
+            padding: 2rem 0;
+            height: 4rem;
+            font-size: 2.2rem;
+        }
+
+        & tr:nth-child(even) {
+            background-color: $color-light-green;
+        }
+        
+
+    }
+
+    & ::-webkit-scrollbar {
+        width: .5rem;
+    }
+
+    & ::-webkit-scrollbar-thumb {
+        background: $color-dark-green; 
+        border-radius: 1rem;
+    }
+
+    &__wrapper {
+        overflow-y: scroll;
+        height: 90%;
+    }
+}
+
