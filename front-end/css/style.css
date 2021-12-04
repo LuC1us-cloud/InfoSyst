@@ -23,18 +23,28 @@ body {
   bottom: 3rem;
   background: white;
   border-radius: 2rem;
-  padding: 2rem;
+  padding: 3rem;
   height: 150vh; }
+  .page-wrap--auto {
+    height: auto; }
 
 .heading-header {
-  color: black;
+  color: #000;
   text-transform: uppercase;
   font-size: 3rem;
   margin-left: 1rem; }
+  .heading-header--center {
+    text-align: center; }
+
+.heading-large {
+  font-size: 5rem;
+  text-transform: uppercase; }
 
 .heading-third {
-  color: #ffff;
+  color: #FFF;
   font-size: 3rem; }
+  .heading-third--black {
+    color: #000; }
 
 .highlight-green {
   color: #0fb163;
@@ -45,11 +55,38 @@ body {
   color: #303e5c;
   font-size: 4.5rem; }
 
+.order-count {
+  font-size: 1.2rem;
+  position: absolute;
+  background-color: rgba(255, 0, 0, 0.534);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  bottom: 0;
+  right: -20%;
+  text-align: center;
+  visibility: hidden; }
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; }
+
 .u-margin-top-big {
   margin-top: 6rem; }
 
 .u-margin-top-small {
   margin-top: 2rem; }
+
+.u-margin-left-small {
+  margin-left: 2rem; }
+
+.u-padding-top-small {
+  padding-top: 2rem; }
+
+.u-text-center {
+  text-align: center; }
+
+.u-rounded-border {
+  border-radius: 1rem; }
 
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
@@ -58,12 +95,12 @@ body {
   display: inline-block;
   border-radius: 1rem;
   transition: all .2s;
-  color: #ffff;
+  color: #FFF;
   border: none;
   cursor: pointer;
   font-size: 1.3rem;
   text-align: center;
-  width: 17rem; }
+  width: 19rem; }
 
 .btn:hover {
   transform: translateY(-5%);
@@ -79,17 +116,60 @@ body {
     right: 0;
     top: 2rem;
     font-size: 1.2rem !important; }
+  .btn--green--big {
+    width: 22rem !important; }
+
+.btn--red {
+  background-color: rgba(255, 0, 0, 0.534); }
 
 .btn--arow {
   background-color: #0fb163;
   border-radius: 50%;
   font-size: 4rem;
   padding: .5rem 1rem;
-  color: #ffff;
+  color: #FFF;
   text-decoration: none; }
+
+.btn--cart {
+  background-color: #0fb163;
+  color: #FFF;
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+  border-radius: 1rem;
+  transition: all .3s; }
+  .btn--cart:hover {
+    transform: translateY(-5%);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn--cart:hover::after {
+      transform: scaleX(1.5) scaleY(1.8);
+      opacity: 0; }
+
+.btn--bottom {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  background-color: #0fb163;
+  color: #FFF;
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+  border-radius: 1rem;
+  transition: all .3s; }
+  .btn--bottom:hover {
+    transform: translateY(-5%);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn--bottom:hover::after {
+      transform: scaleX(1.5) scaleY(1.8);
+      opacity: 0; }
 
 .btn--login {
   margin-right: 2rem; }
+
+.error__message {
+  margin-top: 1rem;
+  color: rgba(255, 0, 0, 0.534);
+  font-size: 1.2rem; }
+  .error__message--large {
+    font-size: 2rem; }
 
 .form {
   padding: 1.5rem 2rem;
@@ -99,6 +179,9 @@ body {
     text-align: center;
     padding: 2rem;
     display: none; }
+  .form__profile {
+    padding: 5rem 5rem;
+    text-align: center; }
   .form__label {
     font-size: 2rem;
     display: block; }
@@ -115,11 +198,13 @@ body {
     border: none;
     padding: 1.5rem 2rem;
     border-radius: 1rem;
-    color: black; }
+    color: #000; }
     .form__input--login {
       border-radius: 0 !important;
       width: 50%;
       border-bottom: 1px solid #0fb163; }
+      .form__input--login--noBorder {
+        border: none; }
     .form__input:focus {
       outline: none; }
     .form__input--header {
@@ -127,7 +212,7 @@ body {
       background-color: #e7e7e7; }
     .form__input--intro {
       width: 100%;
-      background-color: #ffff;
+      background-color: #FFF;
       transition: all .1s; }
       .form__input--intro:focus {
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
@@ -160,19 +245,57 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 40%;
-    background-color: #ffff;
+    background-color: #FFF;
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     display: table;
     overflow: hidden;
     transform: translate(-50%, -50%), scale(0.5);
     transition: all .4s .2s; }
+    .popup__content--small {
+      padding: 3rem 3rem;
+      height: 20vh; }
   .popup:target {
     opacity: 1;
     visibility: visible; }
   .popup:target .popup__content {
     opacity: 1;
     transform: translate(-50%, -50%), scale(1); }
+
+.table {
+  width: 85%;
+  height: 80vh;
+  margin: auto;
+  border: 1px solid #c2ead7; }
+  .table__header {
+    width: 100%;
+    height: 10%;
+    background-color: #0fb163;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    color: #FFF;
+    table-layout: fixed;
+    font-size: 2rem; }
+  .table__body {
+    width: 100%;
+    text-align: center;
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse; }
+    .table__body td {
+      padding: 2rem 0;
+      height: 4rem;
+      font-size: 2.2rem; }
+    .table__body tr:nth-child(even) {
+      background-color: #c2ead7; }
+  .table ::-webkit-scrollbar {
+    width: .5rem; }
+  .table ::-webkit-scrollbar-thumb {
+    background: #0fb163;
+    border-radius: 1rem; }
+  .table__wrapper {
+    overflow-y: scroll;
+    height: 90%; }
 
 .header__wrapper {
   display: flex;
@@ -193,28 +316,56 @@ body {
   width: 80%;
   border-radius: 1rem;
   position: relative;
-  background-size: cover; }
+  background-size: cover;
+  transition: all 1s ease; }
   .card__content {
     position: absolute;
     bottom: 3rem;
     left: 1rem;
     line-height: 3rem; }
+    .card__content--back {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+  .card__hidden {
+    display: none; }
+  .card__vissable {
+    display: inline; }
   .card__button {
     position: absolute;
     bottom: -2rem;
     right: -2rem;
     text-align: center; }
+  .card--standard {
+    background-image: url("/InfoSyst/front-end/img/restaurant-map.jpg"); }
+    .card--standard:hover {
+      background-image: linear-gradient(0deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 100%, transparent 50%), url("/InfoSyst/front-end/img/restaurant-map.jpg"); }
+      .card--standard:hover .card__hidden {
+        display: inline; }
+      .card--standard:hover .card__vissable {
+        display: none; }
+  .card--small {
+    background-image: url("/InfoSyst/front-end/img/menu-item.jpg");
+    background-size: cover;
+    transition: all 1s; }
+    .card--small:hover {
+      background-image: linear-gradient(0deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 100%, transparent 50%), url("/InfoSyst/front-end/img/menu-item.jpg"); }
+      .card--small:hover .card__hidden {
+        display: inline; }
+      .card--small:hover .card__vissable {
+        display: none; }
   .card--1 {
-    background-image: url("/InfoSyst/server/front-end/img/restaurant-list.jpg"); }
+    background-image: url("/InfoSyst/front-end/img/restaurant-list.jpg"); }
   .card--2 {
-    background-image: url("/InfoSyst/server/front-end/img/restaurant-registration.jpg"); }
+    background-image: url("/InfoSyst/front-end/img/restaurant-registration.jpg"); }
   .card--3 {
-    background-image: url("/InfoSyst/server/front-end/img/restaurant-map.jpg"); }
+    background-image: url("/InfoSyst/front-end/img/restaurant-map.jpg"); }
 
 .section {
   width: 100%; }
   .section-intro {
-    background-image: linear-gradient(105deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 50%, transparent 50%), url("/InfoSyst/server/front-end/img/food-bg.jpg.jpg");
+    background-image: linear-gradient(105deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 50%, transparent 50%), url("/InfoSyst/front-end/img/food-bg.jpg.jpg");
     background-size: cover;
     height: 70vh;
     border-radius: inherit;
@@ -232,3 +383,37 @@ body {
 
 .intro__search {
   position: relative; }
+
+.profile {
+  width: 70%;
+  background-color: #c2ead7;
+  margin: auto;
+  margin-top: 20rem;
+  border-radius: 1rem;
+  position: relative; }
+  .profile__content {
+    padding-top: 5rem; }
+  .profile__picture {
+    height: 15rem;
+    width: 15rem;
+    border-radius: 50%;
+    background-image: url("/InfoSyst/front-end/img/profile.png");
+    background-size: cover;
+    position: absolute;
+    top: 10%;
+    left: 5%; }
+
+.restaurants {
+  width: 80%;
+  margin: auto; }
+
+.restaurant {
+  background-image: linear-gradient(105deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 50%, transparent 50%), url("/InfoSyst/front-end/img/restaurant-map.jpg");
+  background-size: cover;
+  height: 70vh;
+  border-radius: inherit;
+  position: relative; }
+
+.menu {
+  width: 90%;
+  margin: auto; }

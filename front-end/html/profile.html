@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="../js/profile.js"></script>
+
+
+    <title>Bwold Food</title>
+</head>
+
+<body>
+
+  <div class="page-wrap">
+
+    <div class="popup">
+      <div class="popup__content popup__content--small">
+        <a href="" class="popup__close">&times;</a>
+        <h3 class="heading-third heading-third--black u-text-center">Ar tikrai norite Ištrinti paskyrą?</h3>
+
+        <div class="u-text-center u-margin-top-small">
+          <a href="#" class="btn btn--green btn--login btn--login-header confirm-delete">Ištrinti</a>
+          <a href="#" class="btn btn--red cancel">Atšaukti</a> 
+        </div>
+
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="header__wrapper">
+        <h1 class="heading-header">Bwolt Food</h1>
+
+        <input type="text" class="form__input form__input--header" placeholder="Paieška..." class="header__search">
+
+        <div class="header__buttons">
+          <a href="client.html" class="btn btn--green btn--login btn--login-header">Pagrindinis</a>
+          <a href="#" class="btn btn--green btn--register logout">Atsijungti</a> 
+        </div>
+      </div>
+    </header>
+   
+    <section class="section-profile">
+      <div class="profile">
+        <div class="profile__content">
+
+          <h1 class="heading-header heading-header--center">Profilio informacija</h1>
+          <div class="profile__picture"></div>
+
+          <form class="form__profile">
+            <input type="text" id="username-profile" name="name" placeholder="Vardas" class="form__input form__input--login form__input--login--noBorder" required>
+            
+            <input type="text" id="surname-profile" name="surname-profile" placeholder="Pavardė" class="form__input form__input--login form__input--login--noBorder u-margin-top-small" required>
+
+            <input type="text" id="address-profile" name="address-profile" placeholder="Adresas" class="form__input form__input--login form__input--login--noBorder  u-margin-top-small" required>
+
+            <p class="error__message"></p>
+
+            <input type="submit" name="login" class="btn btn--green u-margin-top-small" value="Atanujinti" onclick="updateProfile(event)" />
+            <input type="button" name="login" class="btn btn--red u-margin-top-small u-margin-left-small" value="Ištrinti" onclick="deleteProfile(event)" />
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

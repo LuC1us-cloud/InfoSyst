@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 33% 33% 33%;
     gap: 3rem;
+
 }
 
 .card {
@@ -11,13 +12,27 @@
     border-radius: 1rem;
     position: relative;
     background-size: cover;
-
+    transition: all 1s ease;
 
     &__content {
         position: absolute;
+        
         bottom: 3rem;
         left: 1rem;
         line-height: 3rem;
+
+        &--back {
+            @include absCenter;
+        }
+    }
+
+    &__hidden {
+        display: none;
+        
+    }
+
+    &__vissable {
+        display: inline;
     }
 
     &__button {
@@ -25,18 +40,52 @@
         bottom: -2rem;
         right: -2rem;
         text-align: center;
+
+    }
+
+    &--standard {
+        background-image: url('/InfoSyst/front-end/img/restaurant-map.jpg');
+        &:hover {
+            background-image: linear-gradient(0deg, rgba($color-light-green, 0.9) 0%, rgba($color-light-green, 0.9) 100%, transparent 50%), url('/InfoSyst/front-end/img/restaurant-map.jpg'); 
+
+            .card__hidden {
+                display: inline;
+            }
+
+            .card__vissable {
+                display: none;
+            }
+        }
+    }
+
+    &--small {
+        background-image: url('/InfoSyst/front-end/img/menu-item.jpg');
+        background-size: cover;
+
+        transition: all 1s;
+
+        &:hover {
+           background-image: linear-gradient(0deg, rgba($color-light-green, 0.9) 0%, rgba($color-light-green, 0.9) 100%, transparent 50%), url('/InfoSyst/front-end/img/menu-item.jpg'); 
+           .card__hidden {
+                display: inline;
+            }
+
+            .card__vissable {
+                display: none;
+            }
+        }
     }
 
     &--1 {
-        background-image: url('/InfoSyst/server/front-end/img/restaurant-list.jpg');
+        background-image: url('/InfoSyst/front-end/img/restaurant-list.jpg');
     }
 
     &--2 {
-        background-image: url('/InfoSyst/server/front-end/img/restaurant-registration.jpg');
+        background-image: url('/InfoSyst/front-end/img/restaurant-registration.jpg');
     }
 
     &--3 {
-        background-image: url('/InfoSyst/server/front-end/img/restaurant-map.jpg');
+        background-image: url('/InfoSyst/front-end/img/restaurant-map.jpg');
     }
 
 }

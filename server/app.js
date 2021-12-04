@@ -1,3 +1,4 @@
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -17,6 +18,8 @@ app.use(
     cookie: { secure: false },
   })
 );
+app.use(cookieParser());
+
 app.use(cookieParser());
 
 module.exports = app;

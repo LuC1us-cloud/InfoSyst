@@ -14,8 +14,12 @@ body {
     bottom: 3rem;
     background: white;
     border-radius: 2rem;
-    padding: 2rem;
+    padding: 3rem;
     height: 150vh;
+
+    &--auto {
+        height: auto;
+    }
 }
 
 .heading {
@@ -25,11 +29,24 @@ body {
         text-transform: uppercase;
         font-size: 3rem;
         margin-left: 1rem;
+
+        &--center {
+            text-align: center;
+        }
+    }
+
+    &-large {
+        font-size: 5rem;
+        text-transform: uppercase;
     }
 
     &-third {
         color: $color-white;
         font-size: 3rem;
+
+        &--black {
+            color: $color-black;
+        }
     }
 }
 
@@ -45,4 +62,17 @@ body {
         color: $color-dark-blue;
         font-size: 4.5rem;
     }
+}
+
+.order-count {
+    font-size: 1.2rem;
+    position: absolute;
+    background-color: $color-red;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    bottom: 0;
+    right: -20%;
+    text-align: center;
+    visibility: hidden;
 }
