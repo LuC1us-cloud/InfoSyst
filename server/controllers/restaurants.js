@@ -27,24 +27,46 @@ function editRestaurant(req, res) {
     profilePicture: req.body.profilePicture,
   };
   if (Validation.validateRestaurant(restaurant)) {
-    restaurant.approved = false;
-    restaurant.menu = [];
-    restaurant.orderLog = [];
-    restaurant.paymentInfo = [];
-    restaurant.monthlyData = [];
-    restaurant.reviews = [];
-    db.restaurant.update(
-      { _id: req.body._id },
-      restaurant,
-      (err, numReplaced) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send("Something went wrong!");
+    // find a restaurant by id
+    db.restaurant.findOne({ _id: req.body._id }, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Something went wrong!");
+      } else {
+        if (!data) {
+          res.status(404).send("Restaurant not found!");
+        } else {
+          // update the restaurant
+          db.restaurant.update(
+            { _id: req.body._id },
+            {
+              $set: {
+                restaurantName: req.body.restaurantName,
+                restaurantAddress: req.body.restaurantAddress,
+                restaurantCoordinates: req.body.restaurantCoordinates,
+                description: req.body.description,
+                name: req.body.name,
+                surname: req.body.surname,
+                email: req.body.email,
+                website: req.body.website,
+                openingHours: req.body.openingHours,
+                image: req.body.image,
+                phone: req.body.phone,
+                profilePicture: req.body.profilePicture,
+              },
+            },
+            (err, data) => {
+              if (err) {
+                console.log(err);
+                res.status(500).send("Something went wrong!");
+              } else {
+                res.status(200).json(data);
+              }
+            }
+          );
         }
-        console.log("Restaurant edited");
-        res.status(200).json(numReplaced);
       }
-    );
+    });
   } else {
     console.log("Invalid restaurant");
     res.status(400).send("Invalid restaurant");
@@ -190,17 +212,14 @@ function deleteMenu(req, res) {
   });
 }
 function getMenu(req, res) {
-  db.menu.findOne(
-    { _id: req.params.menuId },
-    (err, data) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Something went wrong!");
-      } else {
-        res.status(200).json(data);
-      }
+  db.menu.findOne({ _id: req.params.menuId }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      res.status(200).json(data);
     }
-  );
+  });
 }
 function getRestaurant(req, res) {
   db.restaurant.findOne({ _id: req.params.id }, (err, data) => {

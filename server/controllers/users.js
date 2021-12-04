@@ -1,5 +1,4 @@
 const db = require("../database/database");
-const cookieParser = require("cookie-parser");
 
 function login(req, res) {
   var username = req.body.username;
@@ -96,6 +95,12 @@ function register(req, res) {
                 approved: false,
                 _id: data._id,
               };
+              newRestaurant.approved = false;
+              newRestaurant.menu = [];
+              newRestaurant.orderLog = [];
+              newRestaurant.paymentInfo = [];
+              newRestaurant.monthlyData = [];
+              newRestaurant.reviews = [];
               db.restaurant.insert(newRestaurant, (err, data) => {
                 if (err) {
                   console.log(err);
