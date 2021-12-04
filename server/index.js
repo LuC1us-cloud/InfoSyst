@@ -5,7 +5,7 @@ const restaurant = require("./controllers/restaurants");
 const order = require("./controllers/orders");
 
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+  console.log(`Server is running. Communicate with http://localhost:${port}`);
 });
 exports.app = app;
 // get request that returns "Hello world!"
@@ -32,6 +32,8 @@ app.post("/toggleRestaurant", restaurant.toggleRestaurant);
 
 // gets profile information
 app.get("/profile/:username", users.getProfile);
+// edits profile information
+app.post("/updateProfile", users.updateProfile);
 // deletes the user profile and all related data
 app.delete("/profile", users.deleteProfile);
 
