@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -16,5 +17,6 @@ app.use(
     cookie: { secure: false },
   })
 );
+app.use(cookieParser());
 
 module.exports = app;

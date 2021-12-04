@@ -1,4 +1,5 @@
 const db = require("../database/database");
+const cookieParser = require("cookie-parser");
 
 function login(req, res) {
   var username = req.body.username;
@@ -15,7 +16,12 @@ function login(req, res) {
         req.session.role = data.role;
         req.session.username = data.username;
         req.session.id = data._id;
-        res.send("true");
+        res.cookie("role", data.role);
+        res.cookie("username", data.username);
+        res.cookie("id", data._id);
+        res
+          .status(200)
+          .send({ role: data.role, username: data.username, id: data._id });
       }
     }
   });
@@ -212,6 +218,76 @@ function deleteProfile(req, res) {
     }
   });
 }
+function updateProfile(req, res) {
+  var username = req.session.username;
+  if (!username) {
+    username = req.body.username;
+  }
+  var name = req.body.name;
+  var surname = req.body.surname;
+  var adress = req.body.adress;
+  var profilePicture = req.body.profilePicture;
+  db.login.findOne({ username: username }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      if (data == null) {
+        res.status(500).send("Something went wrong!");
+      } else {
+        if (data.role == "client") {
+          db.client.update(
+            { _id: data._id },
+            {
+              $set: {
+                name: name,
+                surname: surname,
+                adress: adress,
+                profilePicture: profilePicture,
+              },
+            },
+            (err, data) => {
+              if (err) {
+                console.log(err);
+                res.status(500).send("Something went wrong!");
+              } else {
+                if (data == null) {
+                  res.status(500).send("Something went wrong!");
+                } else {
+                  res.status(200).send("Profile updated!");
+                }
+              }
+            }
+          );
+        } else if (data.role == "restaurant") {
+          db.restaurant.update(
+            { _id: data._id },
+            {
+              $set: {
+                name: name,
+                surname: surname,
+                adress: adress,
+                profilePicture: profilePicture,
+              },
+            },
+            (err, data) => {
+              if (err) {
+                console.log(err);
+                res.status(500).send("Something went wrong!");
+              } else {
+                if (data == null) {
+                  res.status(500).send("Something went wrong!");
+                } else {
+                  res.status(200).send("Profile updated!");
+                }
+              }
+            }
+          );
+        }
+      }
+    }
+  });
+}
 
 module.exports = {
   login: login,
@@ -219,4 +295,5 @@ module.exports = {
   logout: logout,
   getProfile,
   deleteProfile,
+  updateProfile,
 };

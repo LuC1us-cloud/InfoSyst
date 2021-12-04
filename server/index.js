@@ -32,6 +32,8 @@ app.post("/toggleRestaurant", restaurant.toggleRestaurant);
 
 // gets profile information
 app.get("/profile/:username", users.getProfile);
+// edits profile information
+app.post("/updateProfile", users.updateProfile);
 // deletes the user profile and all related data
 app.delete("/profile", users.deleteProfile);
 
