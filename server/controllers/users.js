@@ -15,6 +15,9 @@ function login(req, res) {
         req.session.role = data.role;
         req.session.username = data.username;
         req.session.id = data._id;
+        res.cookie("role", data.role);
+        res.cookie("username", data.username);
+        res.cookie("id", data._id);
         res.send("true");
       }
     }

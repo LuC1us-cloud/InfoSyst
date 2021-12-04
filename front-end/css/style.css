@@ -24,7 +24,9 @@ body {
   background: white;
   border-radius: 2rem;
   padding: 3rem;
-  height: auto; }
+  height: 150vh; }
+  .page-wrap--auto {
+    height: auto; }
 
 .heading-header {
   color: #000;
@@ -52,6 +54,18 @@ body {
 .highlight-dark {
   color: #303e5c;
   font-size: 4.5rem; }
+
+.order-count {
+  font-size: 1.2rem;
+  position: absolute;
+  background-color: rgba(255, 0, 0, 0.534);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  bottom: 0;
+  right: -20%;
+  text-align: center;
+  visibility: hidden; }
 
 .u-margin-top-huge {
   margin-top: 10rem !important; }
@@ -127,6 +141,23 @@ body {
     transform: translateY(-5%);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
     .btn--cart:hover::after {
+      transform: scaleX(1.5) scaleY(1.8);
+      opacity: 0; }
+
+.btn--bottom {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  background-color: #0fb163;
+  color: #FFF;
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+  border-radius: 1rem;
+  transition: all .3s; }
+  .btn--bottom:hover {
+    transform: translateY(-5%);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn--bottom:hover::after {
       transform: scaleX(1.5) scaleY(1.8);
       opacity: 0; }
 

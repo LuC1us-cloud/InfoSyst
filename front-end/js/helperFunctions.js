@@ -36,6 +36,8 @@ export const getRestaurantsData = function() {
 };
 
 export const renderRestaurants = function(restaurants) {
+    console.log(restaurants);
+
     restaurants.forEach(restaurant => {
         const {restaurantName, approved, openingHours, adress, _id} = restaurant;
         if(approved) {

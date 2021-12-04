@@ -71,6 +71,29 @@
         }
     }
 
+    &--bottom {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+
+        background-color: $color-dark-green;
+        color: $color-white;
+        padding: 1rem 1.5rem;
+        font-size: 3rem;
+        border-radius: 1rem;
+        transition: all .3s;
+    
+        &:hover {
+            transform: translateY(-5%);
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+            &::after {
+                transform: scaleX(1.5) scaleY(1.8);
+                opacity: 0;
+            }
+        }
+    }
+
     &--login {
         margin-right: 2rem;
     }

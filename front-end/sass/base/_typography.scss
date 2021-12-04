@@ -15,7 +15,11 @@ body {
     background: white;
     border-radius: 2rem;
     padding: 3rem;
-    height: auto;
+    height: 150vh;
+
+    &--auto {
+        height: auto;
+    }
 }
 
 .heading {
@@ -58,4 +62,17 @@ body {
         color: $color-dark-blue;
         font-size: 4.5rem;
     }
+}
+
+.order-count {
+    font-size: 1.2rem;
+    position: absolute;
+    background-color: $color-red;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    bottom: 0;
+    right: -20%;
+    text-align: center;
+    visibility: hidden;
 }

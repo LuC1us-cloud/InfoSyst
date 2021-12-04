@@ -45,7 +45,7 @@ const loadRestaurantMenu = function(menuid, resutaurantName) {
 }
 
 const renderRestaurantMenu = function(menu, restaurantName) {
-    
+
 };
 
 const renderRestaurant = function(restaurant) {
@@ -58,4 +58,4 @@ const renderRestaurant = function(restaurant) {
     `);
 
     loadRestaurantMenu(menu[0], restaurantName);
-}
+};
