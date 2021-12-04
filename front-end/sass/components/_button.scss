@@ -11,7 +11,7 @@
         cursor: pointer;
         font-size: 1.3rem;
         text-align: center;
-        width: 17rem;
+        width: 19rem;
     }
 
     &:hover {
@@ -33,11 +33,14 @@
             top: 2rem;
             font-size: 1.2rem !important;
         }
+
+        &--big {
+            width: 22rem !important;
+        }
     }
 
     &--red {
         background-color: $color-red;
-
     }
 
     &--arow {
@@ -47,6 +50,25 @@
         padding: .5rem 1rem;
         color: $color-white;
         text-decoration: none;
+    }
+
+    &--cart {
+        background-color: $color-dark-green;
+        color: $color-white;
+        padding: 1rem 1.5rem;
+        font-size: 3rem;
+        border-radius: 1rem;
+        transition: all .3s;
+    
+        &:hover {
+            transform: translateY(-5%);
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+            &::after {
+                transform: scaleX(1.5) scaleY(1.8);
+                opacity: 0;
+            }
+        }
     }
 
     &--login {

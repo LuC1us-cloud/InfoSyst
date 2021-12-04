@@ -46,6 +46,7 @@ const loadProfileData = function(username) {
             "username":username
         },
         success: function (response) {
+            console.log(response);
             userData = response;
         }
     });

@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 33% 33% 33%;
     gap: 3rem;
+
 }
 
 .card {
@@ -12,8 +13,6 @@
     position: relative;
     background-size: cover;
     transition: all 1s ease;
-
-
 
     &__content {
         position: absolute;
@@ -44,12 +43,28 @@
 
     &--standard {
         background-image: url('/InfoSyst/front-end/img/restaurant-map.jpg');
-        transition: all 1s ease;
-
         &:hover {
-            opacity: 0.5;
+            background-image: linear-gradient(0deg, rgba($color-light-green, 0.9) 0%, rgba($color-light-green, 0.9) 100%, transparent 50%), url('/InfoSyst/front-end/img/restaurant-map.jpg'); 
 
             .card__hidden {
+                display: inline;
+            }
+
+            .card__vissable {
+                display: none;
+            }
+        }
+    }
+
+    &--small {
+        background-image: url('/InfoSyst/front-end/img/menu-item.jpg');
+        background-size: cover;
+
+        transition: all 1s;
+
+        &:hover {
+           background-image: linear-gradient(0deg, rgba($color-light-green, 0.9) 0%, rgba($color-light-green, 0.9) 100%, transparent 50%), url('/InfoSyst/front-end/img/menu-item.jpg'); 
+           .card__hidden {
                 display: inline;
             }
 

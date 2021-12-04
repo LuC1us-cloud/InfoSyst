@@ -23,8 +23,8 @@ body {
   bottom: 3rem;
   background: white;
   border-radius: 2rem;
-  padding: 2rem;
-  height: 150vh; }
+  padding: 3rem;
+  height: auto; }
 
 .heading-header {
   color: #000;
@@ -86,7 +86,7 @@ body {
   cursor: pointer;
   font-size: 1.3rem;
   text-align: center;
-  width: 17rem; }
+  width: 19rem; }
 
 .btn:hover {
   transform: translateY(-5%);
@@ -102,6 +102,8 @@ body {
     right: 0;
     top: 2rem;
     font-size: 1.2rem !important; }
+  .btn--green--big {
+    width: 22rem !important; }
 
 .btn--red {
   background-color: rgba(255, 0, 0, 0.534); }
@@ -113,6 +115,20 @@ body {
   padding: .5rem 1rem;
   color: #FFF;
   text-decoration: none; }
+
+.btn--cart {
+  background-color: #0fb163;
+  color: #FFF;
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+  border-radius: 1rem;
+  transition: all .3s; }
+  .btn--cart:hover {
+    transform: translateY(-5%);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn--cart:hover::after {
+      transform: scaleX(1.5) scaleY(1.8);
+      opacity: 0; }
 
 .btn--login {
   margin-right: 2rem; }
@@ -291,13 +307,22 @@ body {
     right: -2rem;
     text-align: center; }
   .card--standard {
-    background-image: url("/InfoSyst/front-end/img/restaurant-map.jpg");
-    transition: all 1s ease; }
+    background-image: url("/InfoSyst/front-end/img/restaurant-map.jpg"); }
     .card--standard:hover {
-      opacity: 0.5; }
+      background-image: linear-gradient(0deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 100%, transparent 50%), url("/InfoSyst/front-end/img/restaurant-map.jpg"); }
       .card--standard:hover .card__hidden {
         display: inline; }
       .card--standard:hover .card__vissable {
+        display: none; }
+  .card--small {
+    background-image: url("/InfoSyst/front-end/img/menu-item.jpg");
+    background-size: cover;
+    transition: all 1s; }
+    .card--small:hover {
+      background-image: linear-gradient(0deg, rgba(194, 234, 215, 0.9) 0%, rgba(194, 234, 215, 0.9) 100%, transparent 50%), url("/InfoSyst/front-end/img/menu-item.jpg"); }
+      .card--small:hover .card__hidden {
+        display: inline; }
+      .card--small:hover .card__vissable {
         display: none; }
   .card--1 {
     background-image: url("/InfoSyst/front-end/img/restaurant-list.jpg"); }
@@ -357,3 +382,7 @@ body {
   height: 70vh;
   border-radius: inherit;
   position: relative; }
+
+.menu {
+  width: 90%;
+  margin: auto; }
