@@ -101,11 +101,18 @@ function loginSubmit(e) {
             "password":password
         },
         success: function (response) {
-        console.log(response.status);
           if(response === "false") {
             $('.error__message').html("Neteisingas slapyvardis arba slaptažodis");
           }else {
-              window.location.replace("../html/client.html");
+               const { role } = response;
+               const jsonResp = JSON.stringify(response);
+               let cookieContent = `myCookie=${jsonResp};path/InfoSyst/front-end/html/`
+
+               if(role === 'client') {
+                cookieContent += 'client.html';
+                document.cookie = cookieContent;
+                window.location.replace("../html/client.html");
+               }
           }
         }
       });

@@ -1,5 +1,4 @@
 const db = require("../database/database");
-const cookieParser = require("cookie-parser");
 
 function login(req, res) {
   var username = req.body.username;

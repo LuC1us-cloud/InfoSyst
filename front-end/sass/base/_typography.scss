@@ -65,14 +65,13 @@ body {
 }
 
 .order-count {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     position: absolute;
     background-color: $color-red;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    bottom: 0;
+    top: 0;
     right: -20%;
     text-align: center;
-    visibility: hidden;
 }
