@@ -21,6 +21,8 @@ app.get("/logout", users.logout);
 // register post request
 app.post("/register", users.register);
 
+// gets unnaproved restaurants
+app.get("/restaurants/unapproved", restaurant.getUnapprovedRestaurants);
 // gets list of restaurants
 app.get("/getRestaurants", restaurant.getRestaurants);
 // gets restaurant information

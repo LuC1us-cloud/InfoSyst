@@ -11,6 +11,16 @@ function getRestaurants(req, res) {
     }
   });
 }
+function getUnapprovedRestaurants(req, res) {
+  db.restaurant.find({ approved: false }, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong!");
+    } else {
+      res.status(200).json(data);
+    }
+  });
+}
 function editRestaurant(req, res) {
   const restaurant = {
     restaurantName: req.body.restaurantName,
@@ -297,6 +307,7 @@ function getReviews(req, res) {
 
 module.exports = {
   getRestaurants,
+  getUnapprovedRestaurants,
   getRestaurant,
   editRestaurant,
   toggleRestaurant,
