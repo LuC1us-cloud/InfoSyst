@@ -3,10 +3,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="module" src="../js/history.js"></script>
+    <script type="module" src="../js/restorantRequests.js"></script>
 
     <title>Bwold Food</title>
 </head>
@@ -19,28 +18,25 @@
               <input type="text" class="form__input form__input--header" placeholder="Paieška..." class="header__search">
       
               <div class="header__buttons">
-                <a href="client.html" class="btn btn--green btn--login btn--login-header">Pagrindinis</a>
-                <a href="#" class="btn btn--green btn--login btn--login-header open-profile">Profilis</a>
+                <a href="administrator.html" class="btn btn--green btn--login btn--login-header">Pagrindinis</a>
                 <a href="#" class="btn btn--green btn--register logout">Atsijungti</a> 
               </div>
             </div>
           </header>
 
-          <section class="history u-margin-top-big">
-            <h1 class="heading-header heading-header--center">Užsakymų istorija</h1>
+        <section class="history u-margin-top-big">
+            <h1 class="heading-header heading-header--center">Restoranų užklausos</h1>
         
             <table class="table__header u-margin-top-huge">
               <tr>
-                <th>Užsakymo data</th>
-                <th>Restoranas</th>
-                <th>Suma</th>
-                <th>Statusas</th>
+                <th>Pavadinimas</th>
+                <th></th>
+                <th></th>
               </tr>
             </table>
             <p class="error__message"></p>
             <table class="table__body"></table>
-          </section>
-
+        </section>
     </div>
 </body>
 </html>

@@ -6,13 +6,35 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/restaurant.js"></script>
+    <script type="module" src="../js/restaurant.js"></script>
 
     <title>Bwold Food</title>
 </head>
 
 <body>
+  <div class="message">
+    <a href="#!" class="popup__close--message">&times;</a>
+    <p class="u-text-center">Užsakymas buvo išsiųstas</p>
+  </div>
+
     <div class="page-wrap page-wrap--auto">
+      <div class="popup">
+        <div class="popup__content u-padding-medium">
+          <a href="#!" class="popup__close">&times;</a>
+          <h3 class="heading-third heading-third--black u-text-center">Krepšelis</h3>
+          
+          <div class="order__content">
+
+          </div> 
+
+          <div class="u-text-center u-margin-top-small">
+            <a href="#" class="btn btn--green btn--login btn--login-header confirm-order">Užsisakyti</a>
+            <a href="#!" class="btn btn--red cancel">Atšaukti</a> 
+          </div>
+  
+        </div>
+      </div>
+
         <header class="header">
             <div class="header__wrapper">
               <h1 class="heading-header">Bwolt Food</h1>
@@ -34,78 +56,15 @@
           </section>
 
           <section class="menu">
-            <h1 class="heading-header u-text-center u-margin-top-big menu-header">
-              <span class="highlight-green">Restoranas</span>
-              <span class="highlight-dark">meniu</span>
-            </h1>
+            <h1 class="heading-header u-text-center u-margin-top-big menu-header"></h1>
 
-            <div class="grid-container u-margin-top-big">
-              <div class="card card--small">
-                <div class="card__content card__vissable">
-                    <h3 class="heading-third">${restaurantName}</h3>
-                </div>
-
-                <div class="card__content card__content--back u-text-center card__hidden">
-                    <h3 class="heading-third">Adresas: ${adress}</h3>
-                    <h3 class="heading-third u-margin-top-small">Darbo laikas: ${openingHours}</h3>
-                </div>
-
-                <div class="card__button">
-                    <a href="#!" class="btn--cart restaurant-info"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-              </div>
-
-              <div class="card card--small">
-                <div class="card__content card__vissable">
-                    <h3 class="heading-third">${restaurantName}</h3>
-                </div>
-
-                <div class="card__content card__content--back u-text-center card__hidden">
-                    <h3 class="heading-third">Adresas: ${adress}</h3>
-                    <h3 class="heading-third u-margin-top-small">Darbo laikas: ${openingHours}</h3>
-                </div>
-
-                <div class="card__button">
-                    <a href="#!" class="btn--cart restaurant-info"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-              </div>
-
-              <div class="card card--small">
-                <div class="card__content card__vissable">
-                    <h3 class="heading-third">${restaurantName}</h3>
-                </div>
-
-                <div class="card__content card__content--back u-text-center card__hidden">
-                    <h3 class="heading-third">Adresas: ${adress}</h3>
-                    <h3 class="heading-third u-margin-top-small">Darbo laikas: ${openingHours}</h3>
-                </div>
-
-                <div class="card__button">
-                    <a href="#!" class="btn--cart restaurant-info"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-              </div>
-
-              <div class="card card--small">
-                <div class="card__content card__vissable">
-                    <h3 class="heading-third">${restaurantName}</h3>
-                </div>
-
-                <div class="card__content card__content--back u-text-center card__hidden">
-                    <h3 class="heading-third">Adresas: ${adress}</h3>
-                    <h3 class="heading-third u-margin-top-small">Darbo laikas: ${openingHours}</h3>
-                </div>
-
-                <div class="card__button">
-                    <a href="#!" class="btn--cart restaurant-info"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-              </div>
-            </div>
+            <div class="grid-container u-margin-top-big"></div>
           </section>
     </div>
 
     <a href="#!" class="btn--bottom">
       <i class="fas fa-shopping-bag"></i>
-      <p class="order-count">0</p>
+      <p class="order-count u-visibility-hidden">0</p>
     </a>
 </body>
 </html>

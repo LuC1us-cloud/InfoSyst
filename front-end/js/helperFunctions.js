@@ -39,7 +39,7 @@ export const renderRestaurants = function(restaurants) {
     console.log(restaurants);
 
     restaurants.forEach(restaurant => {
-        const {restaurantName, approved, openingHours, adress, _id} = restaurant;
+        const {restaurantName, approved, openingHours, restaurantAddress, _id} = restaurant;
         if(approved) {
             $('.grid-container').append(`
                 <div class="card card--standard">
@@ -48,7 +48,7 @@ export const renderRestaurants = function(restaurants) {
                     </div>
 
                     <div class="card__content card__content--back u-text-center card__hidden">
-                        <h3 class="heading-third">Adresas: ${adress}</h3>
+                        <h3 class="heading-third">Adresas: ${restaurantAddress}</h3>
                         <h3 class="heading-third u-margin-top-small">Darbo laikas: ${openingHours}</h3>
                     </div>
 
@@ -59,4 +59,21 @@ export const renderRestaurants = function(restaurants) {
             `)
         }
     });
+};
+
+
+export const getCookieData = function() {
+    let cookie = document.cookie;
+    if(cookie.includes("myCookie")) {
+        cookie = cookie.replace('myCookie=', '');
+        cookie = JSON.parse(cookie);
+
+        return cookie;
+    }
+
+    return null;
+};
+
+export const deleteCookie = function(name) {
+    document.cookie = `${name}=;`;
 };

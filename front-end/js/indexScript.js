@@ -36,14 +36,6 @@ $( document ).ready(function() {
             <input type="submit" name="login" class="btn btn--green u-margin-top-small" value="Registruotis" onclick="registerSubmit(event);"/>
         `);
 
-        // <label for="name" class="form__label">Vardas</label>
-        // <input type="text" id="name-register" name="name" placeholder="Vardas" class="form__input form__input--login" required>
-
-        // <label for="surname" class="form__label">Pavardė</label>
-        // <input type="text" id="surname-register" name="surname" placeholder="Pavardė" class="form__input form__input--login" required>
-
-        // <label for="address" class="form__label">Adresas</label>
-        // <input type="text" id="address-register" name="address" placeholder="Adresas" class="form__input form__input--login" required>
         $('.form__login').toggle();
     });
 
@@ -65,12 +57,6 @@ $( document ).ready(function() {
             <p class="error__message"></p>
             <input type="submit" name="login" class="btn btn--green u-margin-top-small" value="Registruotis" onclick="registerSubmit(event);"/>
         `);
-
-        // <label for="address" class="form__label">Adresas</label>
-        // <input type="text" id="address-resourant" name="address" placeholder="Adresas" class="form__input form__input--login" required>
-
-        // <label for="description" class="form__label">Aprašas</label>
-        // <textarea id="description-resourant" name="description" class="form__textarea" rows="4" cols="50" required></textarea>
 
         $('.form__login').toggle();
     });
@@ -101,11 +87,41 @@ function loginSubmit(e) {
             "password":password
         },
         success: function (response) {
-        console.log(response.status);
           if(response === "false") {
             $('.error__message').html("Neteisingas slapyvardis arba slaptažodis");
           }else {
-              window.location.replace("../html/client.html");
+               const { role, id } = response;
+               const jsonResp = JSON.stringify(response);
+               let cookieContent = `myCookie=${jsonResp};path/InfoSyst/front-end/html/`
+
+               if(role === 'client') {
+                cookieContent += 'client.html';
+                document.cookie = cookieContent;
+                window.location.replace("../html/client.html");
+               }else if(role === 'restaurant') {
+                    $.ajax({
+                        type: "get",
+                        url: `http://localhost:3000/getRestaurant/${id}`,
+                        data: {
+                            "id":id
+                        },
+                        success: function (data, _, xhr) {
+                            if(xhr.status === 200) {
+                                if(!data.approved) {
+                                    $('.error__message').html("Restorano registracija dar nepatvritinta sistemos administratoriaus");
+                                }else {
+                                    cookieContent += 'restaurant-client.html';
+                                    document.cookie = cookieContent;
+                                    window.location.replace("../html/restaurant-client.html");
+                                }
+                            }
+                        }
+                    });
+               }else {
+                    cookieContent += 'administrator.html';
+                    document.cookie = cookieContent;
+                    window.location.replace("../html/administrator.html");
+               }
           }
         }
       });
@@ -144,7 +160,7 @@ function registerSubmit(e) {
         success: function (data, _, xhr) {
 
           if(xhr.status === 200) {
-              if(userType === client) {
+              if(userType === 'client') {
                 $('.error__message').html("Jūs buvote sėkmingai užregistruotas, dabar galite prisijungti!");
               }else {
                 $('.error__message').html("Užklausa apie registraciją buvo Išsiųsta administratoriui!");
