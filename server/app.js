@@ -16,6 +16,6 @@ app.use(
     cookie: { secure: false },
   })
 );
-app.use(cookieParser());
+// app.use(cookieParser()); 
 
 module.exports = app;

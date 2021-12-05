@@ -323,6 +323,8 @@ body {
     table-layout: fixed;
     font-size: 2rem;
     margin: auto; }
+    .table__header--small {
+      width: 50%; }
   .table__body {
     width: 90%;
     text-align: center;
@@ -330,6 +332,8 @@ body {
     border-spacing: 0;
     border-collapse: collapse;
     margin: auto; }
+    .table__body--small {
+      width: 50%; }
     .table__body td {
       padding: 2rem 0;
       height: 4rem;
