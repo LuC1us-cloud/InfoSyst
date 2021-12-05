@@ -1,17 +1,12 @@
 "use strict"
 
-$( document ).ready(function() {
+import * as Helper from "./helperFunctions.js";
 
-    $.ajax({
-        type: "get",
-        url: "http://localhost:3000/getRestaurants",
-        success: function (response) {
-            console.log(response);
-        }
-    });
+$( document ).ready(function() {
+    const {id} = Helper.getCookieData();
 
     $('.open-profile').click(function() {
-        
+        window.location.replace(`../html/restaurant-profile.html?id=${id}`);
     });
 
     $('.restaurant-orders').click(function() {
