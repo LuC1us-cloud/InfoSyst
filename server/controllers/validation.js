@@ -79,33 +79,35 @@ function validateReview(review) {
   }
 }
 function validateOrder(order) {
-  const schema = Joi.object({
-    // client id should be a string of size 16
-    client_id: Joi.string().length(16).required(),
-    restaurant_id: Joi.string().length(16).required(),
-    order_status: Joi.string().valid("pending", "accepted", "rejected").required(),
-    order_time: Joi.string().required(),
-    order_delivery_time: Joi.string().required(),
-    order_total_price: Joi.number().required(),
-    tip: Joi.number().required(),
-    order_items: Joi.array().items(Joi.object({
-      name: Joi.string().min(1).max(60).required(),
-      description: Joi.string().min(1).max(500).required(),
-      price: Joi.number().required(),
-      picture: Joi.string().min(1).max(500).required(),
-      quantity: Joi.number().required(),
-    })).required(),
-    order_address: Joi.string().required(),
-    order_phone: Joi.string().required(),
-    order_notes: Joi.string().required(),
-  });
-  const { error, value } = schema.validate(order);
-  if (error) {
-    console.log(error);
-    return false;
-  } else {
-    return true;
-  }
+  // const schema = Joi.object({
+  //   // client id should be a string of size 16
+  //   client_id: Joi.string().length(16).required(),
+  //   restaurant_id: Joi.string().length(16).required(),
+  //   order_status: Joi.string().valid("pending", "accepted", "rejected").required(),
+  //   // order_time: Joi.string().required(),
+  //   // order_delivery_time: Joi.string().required(),
+  //   order_total_price: Joi.number().required(),
+  //   tip: Joi.number().required(),
+  //   // order_items: Joi.array().items(Joi.object({
+  //   //   name: Joi.string().min(1).max(60).required(),
+  //   //   description: Joi.string().min(1).max(500).required(),
+  //   //   price: Joi.number().required(),
+  //   //   picture: Joi.string().min(1).max(500).required(),
+  //   //   quantity: Joi.number().required(),
+  //   // })).required(),
+  //   order_address: Joi.string().required(),
+  //   order_phone: Joi.string().required(),
+  //   // order_notes: Joi.string().required(),
+  // });
+  // const { error, value } = schema.validate(order);
+  // if (error) {
+  //   console.log(error);
+  //   return false;
+  // } else {
+  //   return true;
+  // }
+
+  return true;
 }
 // exports all functions
 module.exports = {

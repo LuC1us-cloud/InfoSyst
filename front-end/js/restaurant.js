@@ -3,20 +3,82 @@
 import * as Helper from "./helperFunctions.js";
 
 let orderedElements = [];
+let orderTotal = 0;
 
 $( document ).ready(function() {
     const searchParams = new URLSearchParams(document.location.search);
     const {username} = Helper.getCookieData();
 
-    $('.open-profile').click(function() {
-        window.location.replace(`../html/profile.html?username=${username}`);
-     });
-
-    
     if(searchParams.has('restaurant')) {
         const restaurantID = searchParams.get('restaurant');
         loadRestaurantData(restaurantID);
     }
+
+    $('.open-profile').click(function() {
+        window.location.replace(`../html/profile.html?username=${username}`);
+    });
+
+    $('.popup__close').click(() => {$('.popup').toggle();});
+
+    $('.btn--bottom').click(function() {
+        $('.order__content').html('');
+        if(orderedElements.length === 0) {
+            $('.order__content').html(`<p class="error__message u-text-center" style="font-size:2rem">
+            Krepšelis yra tuščias</p>`);
+        }else {
+            orderedElements.forEach(element => {
+                let orderedItem, price;
+                [orderedItem, price] = element.split('-');
+                orderTotal += parseFloat(price);
+
+                $('.order__content').append(`
+                    <h3 class="parahraph">${orderedItem}</h3>
+                    <h3 class="parahraph u-float-right">${price}</h3>
+                    <br>
+                `);
+            })
+
+            $('.order__content').append(`
+                <hr class="line u-margin-top-small u-margin-bottom-small">
+            
+                <h3 class="parahraph">Suma</h3>
+                <h3 class="parahraph u-float-right">${orderTotal.toFixed(2)}</h3> 
+            `);
+        }
+
+        $('.popup').toggle();
+    });
+
+    $('.cancel').click(function() {
+        clearOrder();
+    });
+
+    $('.confirm-order').click(function() {
+        const {id} = Helper.getCookieData();
+        const restaurantID = searchParams.get('restaurant');
+
+        $.ajax({
+            type: "post",
+            url: "http://localhost:3000/orderFood",
+            data: {
+                "client_id":id,
+                "restaurant_id":restaurantID,
+                "order_total_price":orderTotal,
+                "order_items":orderedElements,
+                "tip":0,
+                "order_address":"adress",
+                "order_phone":"112",
+                "order_notes":""
+            },
+            success: function (data,_,xhr) {
+                if(xhr.status === 200){
+                    successfullOrder();
+                }else{
+
+                }
+            }
+        });
+    });
 });
 
 const loadRestaurantData = function(id) {
@@ -51,7 +113,6 @@ const loadRestaurantMenu = function(menuid, resutaurantName) {
             }
         }
     });
-
 }
 
 const renderRestaurantMenu = function(menu, restaurantName) {
@@ -82,9 +143,13 @@ const renderRestaurantMenu = function(menu, restaurantName) {
         `);
     });
 
-    document.querySelectorAll('.btn--cart').forEach(button => {
+    document.querySelectorAll('.card__button').forEach(button => {
         button.addEventListener('click', function(e) {
-            orderedElements.push(e.target.parentNode.id);
+            if(e.target.className ==='fas fa-shopping-cart') {
+                orderedElements.push(e.target.parentNode.id);
+            }else {
+                orderedElements.push(e.target.id);
+            }
             $('.order-count').html(`${orderedElements.length}`)
 
             if($('.order-count').css('visibility') === 'hidden') {
@@ -105,3 +170,21 @@ const renderRestaurant = function(restaurant) {
 
     loadRestaurantMenu(menu[0], restaurantName);
 };
+
+const clearOrder = function() {
+    orderedElements = [];
+    orderTotal = 0;
+    $('.order__content').html('');
+    $('.order-count').addClass('u-visibility-hidden');
+
+    $('.popup').toggle();
+}
+
+const successfullOrder = function() {
+    clearOrder();
+    $('.message').toggle();
+
+    setTimeout(() => {
+        $('.message').toggle();
+    }, 4000);
+}
