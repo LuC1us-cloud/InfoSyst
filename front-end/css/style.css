@@ -310,25 +310,26 @@ body {
     transform: translate(-50%, -50%), scale(1); }
 
 .table {
-  width: 85%;
   height: 80vh;
   margin: auto;
   border: 1px solid #c2ead7; }
   .table__header {
-    width: 100%;
-    height: 10%;
+    width: 90%;
+    height: 6rem;
     background-color: #0fb163;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     color: #FFF;
     table-layout: fixed;
-    font-size: 2rem; }
+    font-size: 2rem;
+    margin: auto; }
   .table__body {
-    width: 100%;
+    width: 90%;
     text-align: center;
     table-layout: fixed;
     border-spacing: 0;
-    border-collapse: collapse; }
+    border-collapse: collapse;
+    margin: auto; }
     .table__body td {
       padding: 2rem 0;
       height: 4rem;

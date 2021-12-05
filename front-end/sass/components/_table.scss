@@ -1,26 +1,28 @@
 .table {
-    width: 85%;
     height: 80vh;
     margin: auto;
     border: 1px solid $color-light-green;
 
     &__header {
-        width: 100%;
-        height: 10%;
+        width: 90%;
+        height: 6rem;
         background-color: $color-dark-green;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
         color: $color-white;
         table-layout: fixed;
         font-size: 2rem;
+        margin: auto;
+
     }
 
     &__body {
-        width: 100%;
+        width: 90%;
         text-align: center;
         table-layout: fixed;
         border-spacing:0;
         border-collapse: collapse;
+        margin: auto;
 
         & td {
             padding: 2rem 0;
