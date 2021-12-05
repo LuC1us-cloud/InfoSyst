@@ -361,6 +361,10 @@ body {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   gap: 3rem; }
+  .grid-container--2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 3rem; }
 
 .card {
   height: 40rem;
@@ -407,6 +411,24 @@ body {
         display: inline; }
       .card--small:hover .card__vissable {
         display: none; }
+  .card--menu {
+    background-image: url("/InfoSyst/front-end/img/menu-item.jpg");
+    background-size: cover; }
+    .card--menu:hover {
+      transform: translateY(-5%);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+      .card--menu:hover::after {
+        transform: scaleX(1.5) scaleY(1.8);
+        opacity: 0; }
+  .card--dashboard {
+    background-image: url("/InfoSyst/front-end/img/restaurant-list.jpg");
+    background-size: cover; }
+    .card--dashboard:hover {
+      transform: translateY(-5%);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+      .card--dashboard:hover::after {
+        transform: scaleX(1.5) scaleY(1.8);
+        opacity: 0; }
   .card--1 {
     background-image: url("/InfoSyst/front-end/img/restaurant-list.jpg"); }
   .card--2 {
@@ -471,5 +493,9 @@ body {
   margin: auto; }
 
 .order__content {
+  width: 70%;
+  margin: auto; }
+
+.dashboard {
   width: 70%;
   margin: auto; }

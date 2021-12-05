@@ -87,7 +87,7 @@ function register(req, res) {
                 surname: "Pavardenis",
                 adress: "Gatviu g. 11",
                 profilePicture: "",
-                restaurantName: "Restoranas",
+                restaurantName: username,
                 restaurantCoordinates: "0.00000, 0.00000",
                 website: "",
                 openingHours: "24/7",
