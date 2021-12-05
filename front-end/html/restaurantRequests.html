@@ -1,0 +1,42 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="../js/restorantRequests.js"></script>
+
+    <title>Bwold Food</title>
+</head>
+<body>
+    <div class="page-wrap">
+        <header class="header">
+            <div class="header__wrapper">
+              <h1 class="heading-header">Bwolt Food</h1>
+      
+              <input type="text" class="form__input form__input--header" placeholder="Paieška..." class="header__search">
+      
+              <div class="header__buttons">
+                <a href="administrator.html" class="btn btn--green btn--login btn--login-header">Pagrindinis</a>
+                <a href="#" class="btn btn--green btn--register logout">Atsijungti</a> 
+              </div>
+            </div>
+          </header>
+
+        <section class="history u-margin-top-big">
+            <h1 class="heading-header heading-header--center">Restoranų užklausos</h1>
+        
+            <table class="table__header u-margin-top-huge">
+              <tr>
+                <th>Pavadinimas</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </table>
+            <p class="error__message"></p>
+            <table class="table__body"></table>
+        </section>
+    </div>
+</body>
+</html>
