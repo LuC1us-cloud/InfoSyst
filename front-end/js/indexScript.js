@@ -104,7 +104,7 @@ function loginSubmit(e) {
           if(response === "false") {
             $('.error__message').html("Neteisingas slapyvardis arba slaptažodis");
           }else {
-               const { role } = response;
+               const { role, id } = response;
                const jsonResp = JSON.stringify(response);
                let cookieContent = `myCookie=${jsonResp};path/InfoSyst/front-end/html/`
 
@@ -112,6 +112,21 @@ function loginSubmit(e) {
                 cookieContent += 'client.html';
                 document.cookie = cookieContent;
                 window.location.replace("../html/client.html");
+               }else if(role === 'restaurant') {
+                    $.ajax({
+                        type: "get",
+                        url: `http://localhost:3000/getRestaurant/${id}`,
+                        data: {
+                            "id":id
+                        },
+                        success: function (data, _, xhr) {
+                            if(xhr.status === 200) {
+                                if(!data.approved) {
+                                    $('.error__message').html("Restorano registracija dar nepatvritinta sistemos administratoriaus");
+                                }
+                            }
+                        }
+                    });
                }
           }
         }
@@ -151,7 +166,7 @@ function registerSubmit(e) {
         success: function (data, _, xhr) {
 
           if(xhr.status === 200) {
-              if(userType === client) {
+              if(userType === 'client') {
                 $('.error__message').html("Jūs buvote sėkmingai užregistruotas, dabar galite prisijungti!");
               }else {
                 $('.error__message').html("Užklausa apie registraciją buvo Išsiųsta administratoriui!");

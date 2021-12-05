@@ -53,6 +53,11 @@ $( document ).ready(function() {
         clearOrder();
     });
 
+    $('.logout').click(function() {
+        deleteCookie('myCookie');
+        window.location.replace('../html/index.html');
+    });
+
     $('.confirm-order').click(function() {
         const {id} = Helper.getCookieData();
         const restaurantID = searchParams.get('restaurant');
@@ -187,4 +192,9 @@ const successfullOrder = function() {
     setTimeout(() => {
         $('.message').toggle();
     }, 4000);
-}
+};
+
+const deleteCookie = function(name) {
+    document.cookie = `${name}=;`;
+};
+
