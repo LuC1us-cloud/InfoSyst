@@ -165,7 +165,12 @@ const renderRestaurantMenu = function(menu, restaurantName) {
 };
 
 const renderRestaurant = function(restaurant) {
-    const {restaurantName, openingHours, adress, menu} = restaurant;
+    let {restaurantName, openingHours, adress, menu} = restaurant;
+
+    if(adress === undefined) {
+        const {restaurantAddress} = restaurant;
+        adress = restaurantAddress;
+    }
 
     $('.intro__content--restaurant').html(`
         <h2 class="heading-header"><span class="highlight-dark">${restaurantName}</span></h2>

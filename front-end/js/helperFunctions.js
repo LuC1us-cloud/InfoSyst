@@ -40,10 +40,12 @@ export const renderRestaurants = function(restaurants) {
 
     restaurants.forEach(restaurant => {
         let {restaurantName, approved, openingHours, restaurantAddress, _id} = restaurant;
-        if(!restaurantAddress) {
+        if(restaurantAddress === undefined) {
             const {adress} = restaurant;
             restaurantAddress = adress;
         }
+
+        console.log(!restaurantAddress);
         if(approved) {
             $('.grid-container').append(`
                 <div class="card card--standard">

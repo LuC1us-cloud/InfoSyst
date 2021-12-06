@@ -63,6 +63,8 @@ $( document ).ready(function() {
     
     $('.popup__close').click(function () { 
         $('.error__message').html("");
+        $('.form__login').html("");
+        $('.form__login').toggle();
         $('.popup').toggle();
     });
 });
